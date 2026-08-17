@@ -1,0 +1,48 @@
+:root {
+  --bg-primary: #071018;
+  --bg-secondary: #0b1722;
+  --bg-elevated: #102033;
+  --surface: #13202e;
+  --surface-raised: #18283a;
+
+  --text-primary: #f3f6f9;
+  --text-secondary: #b7c5d4;
+  --text-muted: #7d8d9e;
+
+  --brand-primary: #00aeef;
+  --brand-accent: #1caae2;
+  --brand-deep: #0e2841;
+  --brand-steel: #156082;
+
+  --line: rgba(244, 247, 250, 0.08);
+  --line-strong: rgba(28, 170, 226, 0.38);
+  --glow: rgba(0, 174, 239, 0.18);
+
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Source Sans 3", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --header-h: 5.1rem;
+  --gutter: clamp(1.25rem, 4.2vw, 5.5rem);
+  --max: 74rem;
+  --max-narrow: 46rem;
+
+  --z-base: 1;
+  --z-content: 2;
+  --z-sticky: 10;
+  --z-header: 40;
+  --z-overlay: 50;
+  --z-loader: 60;
+  --z-cursor: 70;
+
+  --focus: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--brand-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion: 0;
+  }
+}

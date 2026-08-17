@@ -1,0 +1,8 @@
+node_modules
+dist
+.DS_Store
+*.log
+_pptx_extract
+_pptx.zip
+_extract_assets.py
+.vite

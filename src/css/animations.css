@@ -1,0 +1,32 @@
+.will-hero {
+  will-change: transform;
+}
+
+@keyframes hover-blob {
+  0% {
+    border-radius: 58% 42% 52% 48% / 46% 58% 42% 54%;
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    border-radius: 42% 62% 48% 58% / 60% 40% 62% 38%;
+    transform: scale(1.08) rotate(7deg);
+  }
+  50% {
+    border-radius: 64% 36% 58% 42% / 38% 64% 36% 62%;
+    transform: scale(0.94) rotate(-8deg);
+  }
+  75% {
+    border-radius: 48% 56% 40% 60% / 56% 44% 58% 42%;
+    transform: scale(1.05) rotate(4deg);
+  }
+  100% {
+    border-radius: 58% 42% 52% 48% / 46% 58% 42% 54%;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .consult-card {
+    will-change: transform;
+  }
+}

@@ -1,0 +1,130 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SITE_CONFIG, prefersReducedMotion } from "../config.js";
+import { createHeroRenderer } from "./hero-sequence.js";
+
+function setAltitude(el, meters) {
+  if (!el) return;
+  el.textContent = `${meters.toLocaleString("en-US")} m`;
+}
+
+function altitudeFromProgress(progress) {
+  return Math.round(
+    SITE_CONFIG.summitAltitude +
+      (SITE_CONFIG.endAltitude - SITE_CONFIG.summitAltitude) * progress
+  );
+}
+
+export function initHero() {
+  const section = document.querySelector("#hero");
+  const sticky = section?.querySelector(".hero__sticky");
+  const canvas = section?.querySelector(".hero__canvas");
+  const altEl = document.querySelector("[data-altitude]");
+  const phases = gsap.utils.toArray(".hero__phase");
+  const hint = section?.querySelector(".hero__hint");
+  const mist = section?.querySelector(".hero__mist");
+  if (!section || !sticky || !canvas) return null;
+
+  const renderer = createHeroRenderer(canvas);
+  const reduce = prefersReducedMotion();
+
+  renderer.init().then(() => {
+    ScrollTrigger.refresh();
+  });
+
+  window.addEventListener("resize", () => renderer.resize(), { passive: true });
+
+  setAltitude(altEl, SITE_CONFIG.summitAltitude);
+
+  if (reduce) {
+    gsap.set(phases, { autoAlpha: 1, y: 0 });
+    renderer.render(0);
+    return renderer;
+  }
+
+  const mm = gsap.matchMedia();
+
+  mm.add(
+    {
+      isDesktop: "(min-width: 768px)",
+      isMobile: "(max-width: 767px)",
+    },
+    (context) => {
+      const { isDesktop } = context.conditions;
+      const distance = isDesktop
+        ? SITE_CONFIG.hero.desktopScrollDistance
+        : SITE_CONFIG.hero.mobileScrollDistance;
+
+      const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${Math.round(window.innerHeight * distance)}`,
+          pin: sticky,
+          pinSpacing: true,
+          scrub: 0.7,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            renderer.render(self.progress);
+          },
+        },
+      });
+
+      gsap.set(phases, { autoAlpha: 0, xPercent: -50, yPercent: -50, y: 36 });
+      gsap.set(phases[0], { autoAlpha: 1, y: 0 });
+
+      tl.to(phases[0], { autoAlpha: 0, y: -32, duration: 0.18 }, 0.12);
+      if (phases[1]) {
+        tl.fromTo(
+          phases[1],
+          { autoAlpha: 0, y: 36 },
+          { autoAlpha: 1, y: 0, duration: 0.16 },
+          0.18
+        );
+        tl.to(phases[1], { autoAlpha: 0, y: -32, duration: 0.14 }, 0.42);
+      }
+      if (phases[2]) {
+        tl.fromTo(
+          phases[2],
+          { autoAlpha: 0, y: 36 },
+          { autoAlpha: 1, y: 0, duration: 0.14 },
+          0.46
+        );
+        tl.to(phases[2], { autoAlpha: 0, y: -32, duration: 0.12 }, 0.7);
+      }
+      if (phases[3]) {
+        tl.fromTo(
+          phases[3],
+          { autoAlpha: 0, y: 36 },
+          { autoAlpha: 1, y: 0, duration: 0.14 },
+          0.74
+        );
+      }
+      if (hint) tl.to(hint, { autoAlpha: 0, duration: 0.12 }, 0.22);
+      if (mist) tl.to(mist, { opacity: 1, yPercent: 8, duration: 0.5 }, 0.55);
+
+      return () => {};
+    }
+  );
+
+  return renderer;
+}
+
+export function initAltitudeMeter() {
+  const altEl = document.querySelector("[data-altitude]");
+  if (!altEl) return;
+
+  setAltitude(altEl, SITE_CONFIG.summitAltitude);
+
+  ScrollTrigger.create({
+    start: 0,
+    end: "max",
+    invalidateOnRefresh: true,
+    refreshPriority: 100,
+    onUpdate: (self) => {
+      setAltitude(altEl, altitudeFromProgress(self.progress));
+    },
+  });
+}

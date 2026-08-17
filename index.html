@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en" class="is-loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      html, body { background: #050d14; margin: 0; }
+      html.is-loading, html.is-loading body { background: #050d14; overflow: hidden; }
+      .loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background: #050d14;
+      }
+      .loader__word { opacity: 0; }
+    </style>
+    <title>BroadPeak International — The bridge between global technology and emerging markets</title>
+    <meta
+      name="description"
+      content="BroadPeak International is a value-driven IT distributor across the Gulf, Africa, and emerging Asian markets — connecting global technology providers with high-growth markets."
+    />
+    <link rel="canonical" href="https://www.broadpeak-intl.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BroadPeak International" />
+    <meta property="og:title" content="BroadPeak International" />
+    <meta
+      property="og:description"
+      content="The bridge between global technology and emerging markets."
+    />
+    <meta property="og:url" content="https://www.broadpeak-intl.com/" />
+    <meta property="og:image" content="/assets/mountains/range.webp" />
+    <meta name="theme-color" content="#071018" />
+    <link rel="icon" href="/assets/brand/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" as="image" href="/assets/mountains/summit.webp" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "BroadPeak International",
+        "url": "https://www.broadpeak-intl.com",
+        "description": "A value-driven IT distributor across the Gulf, Africa, and emerging Asian markets.",
+        "slogan": "The bridge between global technology and emerging markets."
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#about">Skip to content</a>
+
+    <div class="cursor" aria-hidden="true">
+      <div class="cursor__ring"></div>
+      <div class="cursor__dot"></div>
+    </div>
+
+    <div class="loader" id="loader" role="status" aria-live="polite" aria-busy="true">
+      <div class="loader__veil" aria-hidden="true"></div>
+      <div class="loader__word" aria-label="BroadPeak">
+        <span class="loader__letter" data-char="B"><i class="loader__bar"></i><span class="loader__char">B</span></span>
+        <span class="loader__letter" data-char="R"><i class="loader__bar"></i><span class="loader__char">R</span></span>
+        <span class="loader__letter loader__letter--o" data-char="O"><i class="loader__bar"></i><span class="loader__char">O</span></span>
+        <span class="loader__letter" data-char="A"><i class="loader__bar"></i><span class="loader__char">A</span></span>
+        <span class="loader__letter" data-char="D"><i class="loader__bar"></i><span class="loader__char">D</span></span>
+        <span class="loader__letter" data-char="P"><i class="loader__bar"></i><span class="loader__char">P</span></span>
+        <span class="loader__letter" data-char="E"><i class="loader__bar"></i><span class="loader__char">E</span></span>
+        <span class="loader__letter" data-char="A"><i class="loader__bar"></i><span class="loader__char">A</span></span>
+        <span class="loader__letter" data-char="K"><i class="loader__bar"></i><span class="loader__char">K</span></span>
+      </div>
+    </div>
+
+    <aside class="altitude-hud" aria-label="Altitude meter">
+      <div class="hero__place">Broad Peak · Karakoram</div>
+      <div class="hero__alt tabular" data-altitude>8,051 m</div>
+      <div class="hero__alt-note">Summit 8,051 m. Reaches 0 m at the footer.</div>
+    </aside>
+
+    <header class="header">
+      <div class="header__inner">
+        <a class="logo" href="#hero" data-scroll-to="#hero" aria-label="BroadPeak International home">
+          <img src="/assets/brand/broadpeak-logo.png" alt="broadpeak INTERNATIONAL" width="220" height="48" />
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <span></span>
+        </button>
+        <nav class="nav" id="site-nav" aria-label="Primary">
+          <a class="nav__link" href="#about">About</a>
+          <a class="nav__link" href="#markets">Markets</a>
+          <a class="nav__link" href="#solutions">Solutions</a>
+          <a class="nav__link" href="#network">Partners</a>
+          <a class="nav__link" href="#difference">Why BroadPeak</a>
+          <a class="nav__link" href="#process">Process</a>
+          <a class="nav__link" href="#consultancy">Consultancy</a>
+          <a class="nav__link" href="#contact">Contact</a>
+          <a class="btn btn--solid header__cta btn--magnetic" href="#contact" data-scroll-to="#contact">Let’s Talk</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero" aria-label="Broad Peak descent">
+        <div class="hero__sticky">
+          <canvas class="hero__canvas" aria-hidden="true"></canvas>
+          <div class="hero__atmosphere" aria-hidden="true">
+            <div class="hero__grid"></div>
+            <div class="hero__cloud"></div>
+            <div class="hero__cloud hero__cloud--b"></div>
+            <svg class="hero__routes" viewBox="0 0 1200 700" preserveAspectRatio="none">
+              <path d="M80 560 C 220 520, 280 420, 400 390 S 620 430, 740 300 S 980 220, 1140 160" fill="none" stroke="rgba(28,170,226,0.35)" stroke-width="1.4" />
+              <path d="M40 620 C 200 580, 340 500, 480 470 S 760 490, 920 360" fill="none" stroke="rgba(28,170,226,0.18)" stroke-width="1" />
+            </svg>
+            <div class="hero__vignette"></div>
+            <div class="hero__mist"></div>
+            <div class="grain"></div>
+          </div>
+
+          <div class="hero__phases">
+            <div class="hero__phase" data-phase="1">
+              <p class="kicker">The summit we take our name from</p>
+              <h1>Broad Peak</h1>
+              <p>Karakoram · 8,051 m</p>
+            </div>
+            <div class="hero__phase" data-phase="2">
+              <h2>The bridge between global technology and emerging markets.</h2>
+            </div>
+            <div class="hero__phase" data-phase="3">
+              <h2>From the summit to the markets below.</h2>
+              <p>A value-driven IT distributor across the Gulf, Africa, and emerging Asian markets.</p>
+            </div>
+            <div class="hero__phase" data-phase="4">
+              <h2>13 markets. One accountable partner.</h2>
+              <p>Pre-sales engineering, logistics, channel support, and post-sale delivery.</p>
+            </div>
+          </div>
+          <div class="hero__hint" aria-hidden="true">
+            Scroll to descend
+            <i></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about" id="about">
+        <div class="wrap wrap--wide about__intro">
+          <div class="about__top">
+            <p class="kicker">About BroadPeak</p>
+            <span class="about__frame">profile.readout</span>
+          </div>
+          <h2 class="display about__title">We connect global technology solution providers with the high-growth markets everyone else finds hard to reach.</h2>
+          <p class="about__lede">
+            BroadPeak International is a value-driven IT distributor across the Gulf, Africa, and emerging Asian markets.
+            Beyond fulfilment, we provide pre-sales engineering, logistics, and post-sale support that help our partners win and deliver with confidence.
+          </p>
+        </div>
+
+        <div class="about__readout">
+          <div class="about__rule" aria-hidden="true"><i></i></div>
+          <div class="wrap wrap--wide about__stats">
+            <article class="about-stat">
+              <span class="about-stat__idx tabular">01</span>
+              <div class="about-stat__value tabular" data-count="13">13</div>
+              <div class="about-stat__label">markets served</div>
+              <p class="about-stat__note">Three continents</p>
+            </article>
+            <article class="about-stat">
+              <span class="about-stat__idx tabular">02</span>
+              <div class="about-stat__value tabular" data-count="13plus">13+</div>
+              <div class="about-stat__label">global vendor lines</div>
+              <p class="about-stat__note">Under one relationship</p>
+            </article>
+            <article class="about-stat">
+              <span class="about-stat__idx tabular">03</span>
+              <div class="about-stat__value tabular" data-count="9">9</div>
+              <div class="about-stat__label">solution domains</div>
+              <p class="about-stat__note">Edge to core to cloud</p>
+            </article>
+            <article class="about-stat">
+              <span class="about-stat__idx tabular">04</span>
+              <div class="about-stat__value tabular" data-count="360">360°</div>
+              <div class="about-stat__label">presales → post-sale</div>
+              <p class="about-stat__note">Engineering, logistics, support</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section markets" id="markets">
+        <div class="wrap wrap--wide markets__layout">
+          <div class="markets__intro">
+            <p class="kicker">Where we operate</p>
+            <h2 class="display">13 markets spread over three continents.</h2>
+            <p class="lede">On-ground teams and established channel relationships.</p>
+            <div class="markets__globe" aria-hidden="true">
+              <svg id="markets-globe" viewBox="0 0 520 520"></svg>
+            </div>
+          </div>
+          <div class="markets__grid">
+            <article class="market-card" data-region="Europe">
+              <span class="market-card__glow"></span>
+              <span class="market-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 3c2.4 2.4 3.6 5.4 3.6 9S14.4 18.6 12 21c-2.4-2.4-3.6-5.4-3.6-9S9.6 5.4 12 3Z" />
+                  <path d="M3.6 12h16.8" />
+                </svg>
+              </span>
+              <h3>Europe</h3>
+              <p>United Kingdom</p>
+            </article>
+            <article class="market-card" data-region="Middle East">
+              <span class="market-card__glow"></span>
+              <span class="market-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 21s-6.5-5.2-6.5-10.2A6.5 6.5 0 0 1 12 4.3a6.5 6.5 0 0 1 6.5 6.5C18.5 15.8 12 21 12 21Z" />
+                  <circle cx="12" cy="10.6" r="2.1" />
+                </svg>
+              </span>
+              <h3>Middle East</h3>
+              <p>UAE, Oman, and Afghanistan</p>
+            </article>
+            <article class="market-card" data-region="South Asia">
+              <span class="market-card__glow"></span>
+              <span class="market-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="6.5" cy="12" r="2.1" />
+                  <circle cx="17.5" cy="7.5" r="2.1" />
+                  <circle cx="16.5" cy="17" r="2.1" />
+                  <path d="M8.4 11.2 15.4 8.4M8.3 13.1l6.3 2.8M17.1 9.6l-.6 5.3" />
+                </svg>
+              </span>
+              <h3>South Asia</h3>
+              <p>Pakistan, Bangladesh, Sri Lanka, Nepal, and Bhutan</p>
+            </article>
+            <article class="market-card" data-region="East Asia">
+              <span class="market-card__glow"></span>
+              <span class="market-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="3.1" />
+                  <path d="M12 5.2v-2M12 20.8v-2M5.2 12h-2M20.8 12h-2M7 7l-1.5-1.5M18.5 18.5 17 17M17 7l1.5-1.5M7 17l-1.5 1.5" />
+                </svg>
+              </span>
+              <h3>East Asia</h3>
+              <p>Cambodia, Myanmar, Laos, and Mongolia</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section solutions" id="solutions">
+        <div class="wrap solutions__intro">
+          <div class="section__head">
+            <p class="kicker">What we deliver</p>
+            <h2 class="display">Technology focus areas</h2>
+            <p class="lede">Edge to core to cloud, one accountable partner.</p>
+          </div>
+        </div>
+        <div class="solutions__rail">
+          <article class="solution" data-index="01" data-title="On-prem" data-icon="/assets/icons/icon-onprem.png">
+            <div class="wrap solution__row">
+              <span class="solution__index tabular">01</span>
+              <h3>On-prem</h3>
+              <img class="solution__icon" src="/assets/icons/icon-onprem.png" alt="" width="48" height="48" />
+            </div>
+          </article>
+          <article class="solution" data-index="02" data-title="Cloud" data-icon="/assets/icons/icon-cloud.png">
+            <div class="wrap solution__row">
+              <span class="solution__index tabular">02</span>
+              <h3>Cloud</h3>
+              <img class="solution__icon" src="/assets/icons/icon-cloud.png" alt="" width="48" height="48" />
+            </div>
+          </article>
+          <article class="solution" data-index="03" data-title="Data center" data-icon="/assets/icons/icon-datacenter.png">
+            <div class="wrap solution__row">
+              <span class="solution__index tabular">03</span>
+              <h3>Data center</h3>
+              <img class="solution__icon" src="/assets/icons/icon-datacenter.png" alt="" width="48" height="48" />
+            </div>
+          </article>
+          <article class="solution" data-index="04" data-title="Infrastructure" data-icon="/assets/icons/icon-infrastructure.png">
+            <div class="wrap solution__row">
+              <span class="solution__index tabular">04</span>
+              <h3>Infrastructure</h3>
+              <img class="solution__icon" src="/assets/icons/icon-infrastructure.png" alt="" width="48" height="48" />
+            </div>
+          </article>
+          <article class="solution" data-index="05" data-title="Connectivity" data-icon="/assets/icons/icon-connectivity.png">
+            <div class="wrap solution__row">
+              <span class="solution__index tabular">05</span>
+              <h3>Connectivity</h3>
+              <img class="solution__icon" src="/assets/icons/icon-connectivity.png" alt="" width="48" height="48" />
+            </div>
+          </article>
+          <article class="solution" data-index="06" data-title="Observability" data-icon="/assets/icons/icon-observability.png">
+            <div class="wrap solution__row">
+              <span class="solution__index tabular">06</span>
+              <h3>Observability</h3>
+              <img class="solution__icon" src="/assets/icons/icon-observability.png" alt="" width="48" height="48" />
+            </div>
+          </article>
+          <article class="solution" data-index="07" data-title="Cyber Security" data-icon="/assets/icons/icon-cyber.png">
+            <div class="wrap solution__row">
+              <span class="solution__index tabular">07</span>
+              <h3>Cyber Security</h3>
+              <img class="solution__icon" src="/assets/icons/icon-cyber.png" alt="" width="48" height="48" />
+            </div>
+          </article>
+          <article class="solution" data-index="08" data-title="AI & data" data-icon="/assets/icons/icon-ai-data.png">
+            <div class="wrap solution__row">
+              <span class="solution__index tabular">08</span>
+              <h3>AI &amp; data</h3>
+              <img class="solution__icon" src="/assets/icons/icon-ai-data.png" alt="" width="48" height="48" />
+            </div>
+          </article>
+          <article class="solution" data-index="09" data-title="Disaster recovery & data protection" data-icon="/assets/icons/icon-dr.png">
+            <div class="wrap solution__row">
+              <span class="solution__index tabular">09</span>
+              <h3>Disaster recovery &amp; data protection</h3>
+              <img class="solution__icon" src="/assets/icons/icon-dr.png" alt="" width="48" height="48" />
+            </div>
+          </article>
+          <div class="solution-card" aria-hidden="true">
+            <p class="solution-card__meta"></p>
+            <p class="solution-card__name"></p>
+            <div class="solution-card__orb"></div>
+            <img class="solution-card__icon" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section network" id="network">
+        <div class="wrap">
+          <div class="section__head">
+            <p class="kicker">Our network</p>
+            <h2 class="display">Partner ecosystem</h2>
+            <p class="lede">Authorised distribution for leading global technology providers.</p>
+          </div>
+        </div>
+        <div class="marquee" aria-label="Vendor logos">
+          <div class="marquee__track">
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-vmware.png" alt="VMware by Broadcom" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-huawei.png" alt="Huawei" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-lenovo.png" alt="Lenovo" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-h3c.png" alt="H3C" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-eaton.png" alt="Eaton" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-stormwall.png" alt="StormWall" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-vinchin.png" alt="Vinchin" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-digifort.png" alt="Digifort" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-ceburu.png" alt="Ceburu" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-zerowl.png" alt="ZEROWL" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-nexavm.png" alt="NEXAVM" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-foredge.png" alt="Foredge" width="160" height="64" /></div>
+            <div class="vendor-tile"><img src="/assets/vendors/vendor-wanclouds.png" alt="wanclouds" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-vmware.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-huawei.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-lenovo.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-h3c.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-eaton.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-stormwall.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-vinchin.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-digifort.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-ceburu.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-zerowl.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-nexavm.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-foredge.png" alt="" width="160" height="64" /></div>
+            <div class="vendor-tile" aria-hidden="true"><img src="/assets/vendors/vendor-wanclouds.png" alt="" width="160" height="64" /></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section difference" id="difference">
+        <div class="difference__pin">
+          <div class="section__head difference__head">
+            <p class="kicker">Our difference</p>
+            <h2 class="display">Why partner with us?</h2>
+            <p class="lede">Six reasons vendors and partners keep climbing with us.</p>
+          </div>
+          <div class="diff-viewport">
+            <div class="diff-track">
+              <article class="diff-panel">
+                <div class="diff-panel__mark">
+                  <span class="diff-panel__idx tabular">01</span>
+                  <span class="diff-panel__dot" aria-hidden="true"></span>
+                </div>
+                <h3>Regional expertise</h3>
+                <p>Deep market insight and in-country teams across Gulf, Africa &amp; Emerging Asia.</p>
+              </article>
+              <article class="diff-panel">
+                <div class="diff-panel__mark">
+                  <span class="diff-panel__idx tabular">02</span>
+                  <span class="diff-panel__dot" aria-hidden="true"></span>
+                </div>
+                <h3>Pre-sales</h3>
+                <p>Certified engineers supporting design, configurations and POCs.</p>
+              </article>
+              <article class="diff-panel">
+                <div class="diff-panel__mark">
+                  <span class="diff-panel__idx tabular">03</span>
+                  <span class="diff-panel__dot" aria-hidden="true"></span>
+                </div>
+                <h3>Incremental business</h3>
+                <p>We open markets and accounts vendors can't reach directly.</p>
+              </article>
+              <article class="diff-panel">
+                <div class="diff-panel__mark">
+                  <span class="diff-panel__idx tabular">04</span>
+                  <span class="diff-panel__dot" aria-hidden="true"></span>
+                </div>
+                <h3>Operations &amp; logistics</h3>
+                <p>Experienced teams managing import, compliance, and delivery in complex markets.</p>
+              </article>
+              <article class="diff-panel">
+                <div class="diff-panel__mark">
+                  <span class="diff-panel__idx tabular">05</span>
+                  <span class="diff-panel__dot" aria-hidden="true"></span>
+                </div>
+                <h3>Post-sale support</h3>
+                <p>Responsive customer service and support long after the deal closes.</p>
+              </article>
+              <article class="diff-panel">
+                <div class="diff-panel__mark">
+                  <span class="diff-panel__idx tabular">06</span>
+                  <span class="diff-panel__dot" aria-hidden="true"></span>
+                </div>
+                <h3>Trusted relationships</h3>
+                <p>Partnerships built on trust, transparency, and long-term growth.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section value" id="value">
+        <div class="value__pin">
+          <div class="value__head">
+            <p class="kicker">Value proposition</p>
+            <h2 class="display">What we bring to each side</h2>
+          </div>
+          <div class="value__stage">
+            <div class="value-venn">
+              <div class="value-circle value-circle--left">
+                <p>Technology<br />vendors</p>
+              </div>
+              <div class="value-circle value-circle--right">
+                <p>Channel<br />partners</p>
+              </div>
+              <div class="value-core" aria-hidden="true">
+                <span class="value-core__grid"></span>
+                <span class="value-core__mark">B</span>
+              </div>
+            </div>
+            <svg class="value-links" viewBox="0 0 1200 700" aria-hidden="true">
+              <g class="value-links--left">
+                <path class="value-spoke" d="" />
+                <circle r="3.2" />
+                <path class="value-spoke" d="" />
+                <circle r="3.2" />
+                <path class="value-spoke" d="" />
+                <circle r="3.2" />
+                <path class="value-spoke" d="" />
+                <circle r="3.2" />
+              </g>
+              <g class="value-links--right">
+                <path class="value-spoke" d="" />
+                <circle r="3.2" />
+                <path class="value-spoke" d="" />
+                <circle r="3.2" />
+                <path class="value-spoke" d="" />
+                <circle r="3.2" />
+                <path class="value-spoke" d="" />
+                <circle r="3.2" />
+              </g>
+            </svg>
+            <ul class="value-notes value-notes--left">
+              <li class="value-note" style="--nx: 3.2%; --ny: 12%;">
+                <p>A trusted route into high-growth markets that are hard to serve directly</p>
+              </li>
+              <li class="value-note" style="--nx: 2%; --ny: 36%;">
+                <p>In-country presence, channel development, and demand generation</p>
+              </li>
+              <li class="value-note" style="--nx: 2%; --ny: 58%;">
+                <p>Compliant importation, logistics, and local fulfilment</p>
+              </li>
+              <li class="value-note" style="--nx: 3.2%; --ny: 82%;">
+                <p>Market intelligence and pipeline visibility direct from the ground</p>
+              </li>
+            </ul>
+            <ul class="value-notes value-notes--right">
+              <li class="value-note" style="--nx: 96.8%; --ny: 12%;">
+                <p>Access to leading global vendor lines under one relationship</p>
+              </li>
+              <li class="value-note" style="--nx: 98%; --ny: 36%;">
+                <p>Presales engineering, solution design, and bid support</p>
+              </li>
+              <li class="value-note" style="--nx: 98%; --ny: 58%;">
+                <p>Competitive commercial terms and reliable availability</p>
+              </li>
+              <li class="value-note" style="--nx: 96.8%; --ny: 82%;">
+                <p>Training, enablement, and post-sale support that protect your customer</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process" id="process">
+        <div class="process__pin">
+          <div class="wrap process__layout">
+            <div class="process__copy">
+              <div class="section__head">
+                <p class="kicker">How we work</p>
+                <h2 class="display">How we bring vendors to market</h2>
+                <p class="lede">From signed line card to recurring revenue, one accountable partner. We climb with you.</p>
+              </div>
+              <div class="process__path">
+                <article class="process-step" data-step="0">
+                  <div class="process-step__num tabular">01</div>
+                  <div>
+                    <h3>Onboard</h3>
+                    <p>Sign the vendor, set commercial terms, and map the addressable channel.</p>
+                  </div>
+                </article>
+                <article class="process-step" data-step="1">
+                  <div class="process-step__num tabular">02</div>
+                  <div>
+                    <h3>Enable</h3>
+                    <p>Train partners, certify presales engineers, and stock inventory.</p>
+                  </div>
+                </article>
+                <article class="process-step" data-step="2">
+                  <div class="process-step__num tabular">03</div>
+                  <div>
+                    <h3>Generate Demand</h3>
+                    <p>Build pipeline through partner marketing, events, and account mapping.</p>
+                  </div>
+                </article>
+                <article class="process-step" data-step="3">
+                  <div class="process-step__num tabular">04</div>
+                  <div>
+                    <h3>Fulfil</h3>
+                    <p>Handle import, logistics, and post-sale support to close the loop.</p>
+                  </div>
+                </article>
+                <article class="process-step" data-step="4">
+                  <div class="process-step__num tabular">05</div>
+                  <div>
+                    <h3>Grow</h3>
+                    <p>Expand into new accounts and markets on the vendor's behalf.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="process__climb" aria-hidden="true">
+              <div class="climb-field">
+                <div class="climb-grid"></div>
+                <div class="climb-aurora"></div>
+                <div class="climb-scan"></div>
+              </div>
+              <svg class="climb-svg" viewBox="0 0 640 440" role="img">
+                <title>BroadPeak takes a partner from the mountain base to the summit</title>
+                <defs>
+                  <linearGradient id="ridge-fill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#00aeef" stop-opacity="0.18" />
+                    <stop offset="55%" stop-color="#0e2841" stop-opacity="0.55" />
+                    <stop offset="100%" stop-color="#071018" stop-opacity="0.9" />
+                  </linearGradient>
+                  <linearGradient id="route-stroke" x1="0" y1="1" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#7d8d9e" />
+                    <stop offset="50%" stop-color="#00aeef" />
+                    <stop offset="100%" stop-color="#9ee8ff" />
+                  </linearGradient>
+                  <radialGradient id="bp-halo" cx="50%" cy="45%" r="50%">
+                    <stop offset="0%" stop-color="#00aeef" stop-opacity="0.45" />
+                    <stop offset="100%" stop-color="#00aeef" stop-opacity="0" />
+                  </radialGradient>
+                  <radialGradient id="climb-join-glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#e7f8ff" stop-opacity="0.95" />
+                    <stop offset="55%" stop-color="#00aeef" stop-opacity="0.45" />
+                    <stop offset="100%" stop-color="#00aeef" stop-opacity="0" />
+                  </radialGradient>
+                  <filter id="route-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2.2" result="b" />
+                    <feMerge>
+                      <feMergeNode in="b" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <g class="climb-mesh" fill="none" stroke="rgba(0,174,239,0.12)" stroke-width="1">
+                  <path class="peak peak--far" d="M 20 430 L 140 300 L 250 360 L 370 210 L 500 280 L 620 120" />
+                  <path class="peak peak--mid" d="M 0 430 L 110 320 L 230 370 L 350 230 L 480 290 L 610 150" />
+                  <path d="M 40 430 L 160 340 L 270 380 L 390 250 L 520 300 L 640 170" />
+                </g>
+
+                <path class="climb-slope" d="M 24 422 L 78 398 L 168 348 L 248 268 L 378 188 L 518 110 L 612 78 L 640 78 L 640 440 L 0 440 Z" />
+                <path class="climb-route" d="M 36 418 L 78 398 L 168 348 L 248 268 L 378 188 L 518 110 L 600 82" fill="none" filter="url(#route-glow)" />
+
+                <circle class="climb-join" cx="0" cy="0" r="26" fill="url(#climb-join-glow)" />
+
+                <g class="climber climber--client climber--partner">
+                  <g class="arm arm--back"><rect x="-5" y="-6" width="10" height="26" rx="5" /></g>
+                  <g class="leg leg--l"><rect x="-5" y="-6" width="10" height="32" rx="5" /></g>
+                  <g class="leg leg--r"><rect x="-5" y="-6" width="10" height="32" rx="5" /></g>
+                  <rect class="torso" x="-9" y="-44" width="18" height="28" rx="9" />
+                  <g class="arm arm--reach"><rect x="-5" y="-6" width="10" height="32" rx="5" /></g>
+                  <circle class="joint" cx="-7" cy="-36" r="5" />
+                  <circle class="joint" cx="7" cy="-36" r="5" />
+                  <circle class="head" cx="0" cy="-54" r="10" />
+                  <text class="climb-tag climb-tag--above" x="0" y="-70" text-anchor="middle">Partner</text>
+                </g>
+
+                <g class="climber climber--helper climber--bp">
+                  <circle class="climber__halo" cx="0" cy="-28" r="46" fill="url(#bp-halo)" />
+                  <g class="arm arm--back"><rect x="-5" y="-6" width="10" height="26" rx="5" /></g>
+                  <g class="leg leg--l"><rect x="-5" y="-6" width="10" height="32" rx="5" /></g>
+                  <g class="leg leg--r"><rect x="-5" y="-6" width="10" height="32" rx="5" /></g>
+                  <rect class="torso" x="-9" y="-44" width="18" height="28" rx="9" />
+                  <g class="arm arm--reach"><rect x="-5" y="-6" width="10" height="34" rx="5" /></g>
+                  <circle class="joint" cx="-7" cy="-36" r="5" />
+                  <circle class="joint" cx="7" cy="-36" r="5" />
+                  <circle class="head" cx="0" cy="-54" r="10" />
+                  <text class="climb-tag climb-tag--above" x="0" y="-70" text-anchor="middle">BroadPeak</text>
+                </g>
+
+                <g class="climb-nodes">
+                  <g class="climb-node is-on" data-node="0" transform="translate(78 398)">
+                    <circle r="6" />
+                    <text x="12" y="16">01 Onboard</text>
+                  </g>
+                  <g class="climb-node" data-node="1" transform="translate(168 348)">
+                    <circle r="6" />
+                    <text x="12" y="16">02 Enable</text>
+                  </g>
+                  <g class="climb-node" data-node="2" transform="translate(248 268)">
+                    <circle r="6" />
+                    <text x="12" y="16">03 Demand</text>
+                  </g>
+                  <g class="climb-node" data-node="3" transform="translate(378 188)">
+                    <circle r="6" />
+                    <text x="12" y="16">04 Fulfil</text>
+                  </g>
+                  <g class="climb-node" data-node="4" transform="translate(518 110)">
+                    <circle r="6" />
+                    <text x="12" y="16">05 Grow</text>
+                  </g>
+                </g>
+              </svg>
+              <div class="process__hud">
+                <div class="process__legend">
+                  <span class="process__swatch process__swatch--bp"></span>
+                  BroadPeak
+                  <span class="process__swatch process__swatch--partner"></span>
+                  Partner
+                </div>
+                <p class="process__stage" data-process-stage>01 · Onboard</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section consultancy" id="consultancy">
+        <div class="consult__track">
+          <div class="consult__pin">
+            <div class="consult__copy">
+              <p class="kicker">What we deliver</p>
+              <h2 class="display">Consultancy services</h2>
+              <p class="lede">Independent advisory backed by years of experience.</p>
+            </div>
+            <div class="consult-orbit">
+              <article class="consult-card" data-float="0">
+                <img src="/assets/icons/icon-architecture.png" alt="" width="40" height="40" />
+                <div class="consult-card__idx tabular">01</div>
+                <h3>Architecture</h3>
+                <p>Enterprise ecosystem design and roadmap creation.</p>
+              </article>
+              <article class="consult-card" data-float="1">
+                <img src="/assets/icons/icon-tech-refresh.png" alt="" width="40" height="40" />
+                <div class="consult-card__idx tabular">02</div>
+                <h3>Tech refresh</h3>
+                <p>Lifecycle planning and migration for ageing infrastructure.</p>
+              </article>
+              <article class="consult-card" data-float="2">
+                <img src="/assets/icons/icon-cloud-adoption.png" alt="" width="40" height="40" />
+                <div class="consult-card__idx tabular">03</div>
+                <h3>Cloud adoption</h3>
+                <p>Migration strategy, workload assessment, and cloud landing zone.</p>
+              </article>
+              <article class="consult-card" data-float="3">
+                <img src="/assets/icons/icon-cyber-consult.png" alt="" width="40" height="40" />
+                <div class="consult-card__idx tabular">04</div>
+                <h3>Cyber security</h3>
+                <p>Risk assessments, security architecture, and control implementation.</p>
+              </article>
+              <article class="consult-card" data-float="4">
+                <img src="/assets/icons/icon-standards.png" alt="" width="40" height="40" />
+                <div class="consult-card__idx tabular">05</div>
+                <h3>Standards auditing</h3>
+                <p>Compliance and standards audits.</p>
+              </article>
+              <article class="consult-card" data-float="5">
+                <img src="/assets/icons/icon-ai-adoption.png" alt="" width="40" height="40" />
+                <div class="consult-card__idx tabular">06</div>
+                <h3>AI adoption</h3>
+                <p>Readiness assessments and roadmaps for adopting AI.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="contact">
+        <div class="cta__field" aria-hidden="true">
+          <div class="cta__aurora cta__aurora--a"></div>
+          <div class="cta__aurora cta__aurora--b"></div>
+          <div class="cta__aurora cta__aurora--c"></div>
+          <div class="cta__grid"></div>
+          <div class="cta__sweep"></div>
+          <svg class="cta__radar" viewBox="0 0 800 800">
+            <circle class="cta-ring" cx="400" cy="400" r="110" />
+            <circle class="cta-ring" cx="400" cy="400" r="200" />
+            <circle class="cta-ring" cx="400" cy="400" r="300" />
+            <circle class="cta-ring" cx="400" cy="400" r="390" />
+          </svg>
+          <div class="cta__sparks"></div>
+        </div>
+        <div class="wrap cta__inner">
+          <p class="kicker">Next elevation</p>
+          <h2 class="display">Let’s work together.</h2>
+          <p class="lede">From strategy to execution, we're committed to your success at every stage.</p>
+          <a class="btn btn--solid btn--magnetic" href="https://www.broadpeak-intl.com" rel="noopener">www.broadpeak-intl.com</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="site-footer">
+      <canvas class="footer__canvas" aria-hidden="true"></canvas>
+      <div class="footer__glow" aria-hidden="true"></div>
+
+      <div class="footer__chrome">
+        <span class="footer__frame">base.camp</span>
+        <a class="footer__totop" href="#hero" data-scroll-to="#hero" aria-label="Back to summit">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="wrap wrap--wide footer__main">
+        <div class="footer__cta">
+          <p class="footer__eyebrow">Ready for the next ascent?</p>
+          <a class="footer__mail" href="https://www.broadpeak-intl.com" rel="noopener">
+            www.broadpeak-intl.com
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path d="M3 13 13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <div class="footer__cta-row">
+            <a class="btn btn--solid btn--magnetic footer__btn" href="#contact" data-scroll-to="#contact">Let’s Talk →</a>
+            <p class="footer__live"><i></i> Gulf · Africa · Asia</p>
+          </div>
+        </div>
+
+        <div class="footer__cols">
+          <nav class="footer__col" aria-label="Explore">
+            <h3>Explore</h3>
+            <a href="#about" data-scroll-to="#about">About</a>
+            <a href="#markets" data-scroll-to="#markets">Markets</a>
+            <a href="#solutions" data-scroll-to="#solutions">Solutions</a>
+            <a href="#process" data-scroll-to="#process">Process</a>
+          </nav>
+          <nav class="footer__col" aria-label="Company">
+            <h3>Company</h3>
+            <a href="#network" data-scroll-to="#network">Partners</a>
+            <a href="#difference" data-scroll-to="#difference">Why BroadPeak</a>
+            <a href="#consultancy" data-scroll-to="#consultancy">Consultancy</a>
+            <a href="#contact" data-scroll-to="#contact">Contact</a>
+          </nav>
+          <nav class="footer__col" aria-label="Connect">
+            <h3>Connect</h3>
+            <a href="https://www.broadpeak-intl.com" rel="noopener">Website</a>
+            <a href="#contact" data-scroll-to="#contact">Let’s Talk</a>
+            <a href="#hero" data-scroll-to="#hero">Summit</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer__word" aria-hidden="true">
+        <span class="footer__letter footer__letter--accent">B</span>
+        <span class="footer__letter">r</span>
+        <span class="footer__letter">o</span>
+        <span class="footer__letter">a</span>
+        <span class="footer__letter">d</span>
+        <span class="footer__letter">P</span>
+        <span class="footer__letter">e</span>
+        <span class="footer__letter">a</span>
+        <span class="footer__letter">k</span>
+      </div>
+      <p class="sr-only">BroadPeak</p>
+
+      <div class="footer__altimeter" aria-hidden="true">
+        <span class="footer__altimeter-fill"></span>
+        <span class="footer__altimeter-node"></span>
+      </div>
+
+      <div class="wrap wrap--wide footer__meta">
+        <span class="footer__file"><i></i> broadpeak-intl.com</span>
+        <span class="footer__base"><i></i> 0 m · base camp</span>
+        <span>© BroadPeak International</span>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>
