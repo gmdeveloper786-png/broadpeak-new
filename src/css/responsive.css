@@ -119,14 +119,6 @@
     display: none;
   }
 
-  .process__layout {
-    grid-template-columns: 1fr;
-  }
-
-  .process__climb {
-    min-height: 20rem;
-  }
-
   .footer__main {
     grid-template-columns: 1fr;
   }
@@ -170,30 +162,6 @@
 
   .diff-panel__mark {
     font-size: clamp(2.8rem, 14vw, 4.2rem);
-  }
-
-  .process {
-    padding-block: clamp(4.5rem, 10vw, 8.5rem);
-  }
-
-  .process__pin {
-    min-height: 0;
-    padding-block: 0;
-  }
-
-  .process__layout {
-    grid-template-columns: 1fr;
-  }
-
-  .process__climb {
-    min-height: 18rem;
-    order: -1;
-  }
-
-  .process__hud {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
   }
 
   .footer__main {
@@ -256,7 +224,6 @@
   .hero__cloud,
   .hero__hint i,
   .marquee__track,
-  .climb-scan,
   .cta__aurora,
   .cta__grid,
   .cta__sweep,

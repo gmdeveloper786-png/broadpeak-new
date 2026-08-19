@@ -26,7 +26,7 @@ function splitWords(el) {
 
 export function initHeadingReveal() {
     const headings = gsap.utils.toArray("main h2.display").filter(
-      (heading) => !heading.closest("#consultancy, #difference, #value, #markets")
+      (heading) => !heading.closest("#consultancy, #difference, #value, #markets, #process")
     );
   if (!headings.length) return;
 
