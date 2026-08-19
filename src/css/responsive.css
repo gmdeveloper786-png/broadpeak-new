@@ -263,7 +263,8 @@
   .cta-ring,
   .cta .btn--solid,
   .nav__link:hover::before,
-  .footer__col a:hover::before {
+  .footer__col a:hover::before,
+  .market-globe__pin.is-on .market-globe__pulse {
     animation: none;
   }
 
