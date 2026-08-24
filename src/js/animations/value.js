@@ -159,18 +159,51 @@ export function initValueProposition() {
   });
 
   mm.add("(max-width: 1099px)", () => {
+    const mergeY = () => Math.max(0, (venn.offsetHeight - left.offsetHeight) / 2);
+
     gsap.set(venn, { autoAlpha: 1 });
-    gsap.set([left, right, titles, core], { clearProps: "transform,opacity,visibility" });
-    gsap.from(section.querySelectorAll(".value-circle, .value-note"), {
-      y: 22,
+    gsap.set(links, { autoAlpha: 0 });
+    gsap.set(titles, { opacity: 0 });
+    gsap.set(core, {
       autoAlpha: 0,
-      stagger: 0.06,
-      duration: 0.6,
-      ease: "power3.out",
+      scale: 0.62,
+      x: 0,
+      y: 0,
+      xPercent: 0,
+      yPercent: 0,
+      transformOrigin: "50% 50%",
+    });
+    gsap.set(notes, { autoAlpha: 0, y: 18 });
+    gsap.set([left, right], {
+      autoAlpha: 0,
+      x: 0,
+      scale: 0.42,
+      transformOrigin: "50% 50%",
+    });
+    gsap.set(left, { y: mergeY });
+    gsap.set(right, { y: () => -mergeY() });
+
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.out" },
       scrollTrigger: {
         trigger: section,
         start: "top 78%",
+        once: true,
       },
     });
+
+    tl.to(left, { autoAlpha: 1, scale: 1, duration: 0.7 }, 0);
+    tl.to(right, { autoAlpha: 1, scale: 1, duration: 0.7 }, 0.08);
+    tl.to(left, { y: 0, duration: 0.6 }, 0.55);
+    tl.to(right, { y: 0, duration: 0.6 }, 0.55);
+    tl.to(titles, { opacity: 1, duration: 0.35 }, 0.9);
+    tl.to(core, { autoAlpha: 1, scale: 1, duration: 0.4 }, 0.95);
+    tl.to(notes, { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.05 }, 1.1);
+
+    return () => {
+      gsap.set([left, right, titles, core, notes, venn], {
+        clearProps: "transform,opacity,visibility",
+      });
+    };
   });
 }

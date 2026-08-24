@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <style>
       html, body { background: #050d14; margin: 0; }
     </style>
@@ -22,7 +22,7 @@
     <meta property="og:url" content="https://www.broadpeak-intl.com/" />
     <meta property="og:image" content="/assets/mountains/range.webp" />
     <meta name="theme-color" content="#071018" />
-    <link rel="icon" href="/assets/brand/favicon.png" type="image/png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -63,7 +63,7 @@
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
           <span></span>
         </button>
-        <nav class="nav" id="site-nav" aria-label="Primary">
+        <nav class="nav nav--desktop" id="site-nav-desktop" aria-label="Primary">
           <a class="nav__link" href="#about">About</a>
           <a class="nav__link" href="#markets">Markets</a>
           <a class="nav__link" href="#solutions">Solutions</a>
@@ -76,6 +76,25 @@
         </nav>
       </div>
     </header>
+
+    <div class="nav-sheet" id="site-nav" hidden>
+      <div class="nav-sheet__veil" aria-hidden="true"></div>
+      <div class="nav-sheet__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+        <div class="nav-sheet__glow" aria-hidden="true"></div>
+        <p class="nav-sheet__label">Navigate</p>
+        <nav class="nav-sheet__links" aria-label="Mobile">
+          <a class="nav-sheet__link" href="#about"><span>01</span>About</a>
+          <a class="nav-sheet__link" href="#markets"><span>02</span>Markets</a>
+          <a class="nav-sheet__link" href="#solutions"><span>03</span>Solutions</a>
+          <a class="nav-sheet__link" href="#network"><span>04</span>Partners</a>
+          <a class="nav-sheet__link" href="#difference"><span>05</span>Why BroadPeak</a>
+          <a class="nav-sheet__link" href="#process"><span>06</span>Process</a>
+          <a class="nav-sheet__link" href="#consultancy"><span>07</span>Consultancy</a>
+          <a class="nav-sheet__link" href="#contact"><span>08</span>Contact</a>
+        </nav>
+        <a class="btn btn--solid nav-sheet__cta" href="#contact" data-scroll-to="#contact">Let’s Talk</a>
+      </div>
+    </div>
 
     <main>
       <section class="hero" id="hero" aria-label="Broad Peak descent">
@@ -111,7 +130,6 @@
         <div class="wrap wrap--wide about__intro">
           <div class="about__top">
             <p class="kicker">About BroadPeak</p>
-            <span class="about__frame">profile.readout</span>
           </div>
           <h2 class="display about__title">We connect global technology solution providers with the high-growth markets everyone else finds hard to reach.</h2>
           <p class="about__lede">

@@ -110,6 +110,10 @@
   gap: 0.1rem;
 }
 
+.nav-sheet {
+  display: none;
+}
+
 .nav__link {
   position: relative;
   isolation: isolate;
@@ -173,8 +177,8 @@
   width: 2.75rem;
   height: 2.75rem;
   place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 0.5rem;
+  border: 0;
+  background: transparent;
 }
 
 .nav-toggle span,

@@ -114,8 +114,11 @@ export function playHeaderIntro() {
 export function initHeader() {
   const header = document.querySelector(".header");
   const toggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector("#site-nav");
-  const links = gsap.utils.toArray(".nav__link[href^='#']");
+  const sheet = document.querySelector(".nav-sheet");
+  const veil = sheet?.querySelector(".nav-sheet__veil");
+  const sheetLinks = gsap.utils.toArray(".nav-sheet__link");
+  const desktopLinks = gsap.utils.toArray(".nav--desktop .nav__link[href^='#']");
+  const allLinks = [...desktopLinks, ...sheetLinks];
   if (!header) return;
 
   prepareIntro(header);
@@ -156,7 +159,7 @@ export function initHeader() {
     },
   });
 
-  const sections = links
+  const sections = desktopLinks
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
 
@@ -169,26 +172,56 @@ export function initHeader() {
       sections.forEach((section) => {
         if (section.getBoundingClientRect().top <= marker) activeId = section.id;
       });
-      links.forEach((link) => {
+      allLinks.forEach((link) => {
         link.classList.toggle("is-active", link.getAttribute("href") === `#${activeId}`);
       });
     },
   });
 
-  function closeNav() {
-    document.body.classList.remove("is-nav-open");
+  function closeNav({ resumeScroll = true } = {}) {
+    if (!document.body.classList.contains("is-nav-open")) return;
     toggle?.setAttribute("aria-expanded", "false");
-    const lenis = getLenis();
-    lenis?.start();
+    toggle?.setAttribute("aria-label", "Open menu");
+    document.body.classList.remove("is-nav-open");
+
+    // Resume Lenis immediately so hash/nav scrolls aren't ignored while stopped.
+    if (resumeScroll) getLenis()?.start();
+
+    if (!sheet) return;
+
+    window.setTimeout(() => {
+      sheet.hidden = true;
+    }, prefersReducedMotion() ? 0 : 480);
   }
 
   function openNav() {
     showHeader();
+    if (sheet) sheet.hidden = false;
+    // Force layout before CSS transition so the panel can slide in.
+    sheet?.offsetHeight;
     document.body.classList.add("is-nav-open");
     toggle?.setAttribute("aria-expanded", "true");
+    toggle?.setAttribute("aria-label", "Close menu");
     const lenis = getLenis();
     lenis?.stop();
-    nav?.querySelector("a")?.focus();
+
+    if (!prefersReducedMotion() && sheetLinks.length) {
+      gsap.fromTo(
+        sheetLinks,
+        { y: 10, opacity: 0.4 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.03,
+          duration: 0.32,
+          ease: "power3.out",
+          delay: 0.08,
+          clearProps: "opacity,transform",
+        }
+      );
+    }
+
+    window.setTimeout(() => sheetLinks[0]?.focus(), 120);
   }
 
   toggle?.addEventListener("click", () => {
@@ -196,29 +229,38 @@ export function initHeader() {
     else openNav();
   });
 
+  veil?.addEventListener("click", closeNav);
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeNav();
   });
 
-  links.forEach((link) => {
+  function goToSection(href) {
+    const target = document.querySelector(href);
+    if (!target) return false;
+    closeNav();
+    // Defer one frame so Lenis is running after stop→start and layout unlocks.
+    requestAnimationFrame(() => {
+      scrollToTarget(target, -8);
+    });
+    return true;
+  }
+
+  allLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href");
-      const target = document.querySelector(href);
-      if (!target) return;
+      if (!href?.startsWith("#")) return;
+      if (!goToSection(href)) return;
       e.preventDefault();
-      closeNav();
-      scrollToTarget(target, -8);
     });
   });
 
   document.querySelectorAll("[data-scroll-to]").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const href = btn.getAttribute("href") || btn.dataset.scrollTo;
-      const target = document.querySelector(href);
-      if (!target) return;
+      if (!href) return;
+      if (!goToSection(href)) return;
       e.preventDefault();
-      closeNav();
-      scrollToTarget(target, -8);
     });
   });
 }

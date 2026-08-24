@@ -30,7 +30,14 @@ export function getLenis() {
 
 export function scrollToTarget(target, offsetY = 0) {
   if (lenis) {
-    lenis.scrollTo(target, { offset: offsetY, duration: 1.15 });
+    lenis.start();
+    lenis.scrollTo(target, {
+      offset: offsetY,
+      duration: 1.15,
+      // Allow scroll even if Lenis was stopped (e.g. mobile nav open).
+      force: true,
+      lock: true,
+    });
     return;
   }
   const el = typeof target === "string" ? document.querySelector(target) : target;
