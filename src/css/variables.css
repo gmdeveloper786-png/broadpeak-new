@@ -35,7 +35,6 @@
   --z-sticky: 10;
   --z-header: 40;
   --z-overlay: 50;
-  --z-loader: 60;
   --z-cursor: 70;
 
   --focus: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--brand-primary);

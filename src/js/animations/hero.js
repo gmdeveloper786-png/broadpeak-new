@@ -21,7 +21,6 @@ export function initHero() {
   const canvas = section?.querySelector(".hero__canvas");
   const altEl = document.querySelector("[data-altitude]");
   const phases = gsap.utils.toArray(".hero__phase");
-  const hint = section?.querySelector(".hero__hint");
   const mist = section?.querySelector(".hero__mist");
   if (!section || !sticky || !canvas) return null;
 
@@ -37,7 +36,8 @@ export function initHero() {
   setAltitude(altEl, SITE_CONFIG.summitAltitude);
 
   if (reduce) {
-    gsap.set(phases, { autoAlpha: 1, y: 0 });
+    gsap.set(phases, { autoAlpha: 0, y: 0 });
+    if (phases[0]) gsap.set(phases[0], { autoAlpha: 1 });
     renderer.render(0);
     return renderer;
   }
@@ -75,35 +75,16 @@ export function initHero() {
       gsap.set(phases, { autoAlpha: 0, xPercent: -50, yPercent: -50, y: 36 });
       gsap.set(phases[0], { autoAlpha: 1, y: 0 });
 
-      tl.to(phases[0], { autoAlpha: 0, y: -32, duration: 0.18 }, 0.12);
+      tl.to(phases[0], { autoAlpha: 0, y: -32, duration: 0.22 }, 0.18);
       if (phases[1]) {
         tl.fromTo(
           phases[1],
           { autoAlpha: 0, y: 36 },
-          { autoAlpha: 1, y: 0, duration: 0.16 },
-          0.18
-        );
-        tl.to(phases[1], { autoAlpha: 0, y: -32, duration: 0.14 }, 0.42);
-      }
-      if (phases[2]) {
-        tl.fromTo(
-          phases[2],
-          { autoAlpha: 0, y: 36 },
-          { autoAlpha: 1, y: 0, duration: 0.14 },
-          0.46
-        );
-        tl.to(phases[2], { autoAlpha: 0, y: -32, duration: 0.12 }, 0.7);
-      }
-      if (phases[3]) {
-        tl.fromTo(
-          phases[3],
-          { autoAlpha: 0, y: 36 },
-          { autoAlpha: 1, y: 0, duration: 0.14 },
-          0.74
+          { autoAlpha: 1, y: 0, duration: 0.22 },
+          0.28
         );
       }
-      if (hint) tl.to(hint, { autoAlpha: 0, duration: 0.12 }, 0.22);
-      if (mist) tl.to(mist, { opacity: 1, yPercent: 8, duration: 0.5 }, 0.55);
+      if (mist) tl.to(mist, { opacity: 1, yPercent: 8, duration: 0.4 }, 0.45);
 
       return () => {};
     }

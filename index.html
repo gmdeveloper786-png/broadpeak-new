@@ -1,21 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="is-loading">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       html, body { background: #050d14; margin: 0; }
-      html.is-loading, html.is-loading body { background: #050d14; overflow: hidden; }
-      .loader {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        overflow: hidden;
-        display: grid;
-        place-items: center;
-        background: #050d14;
-      }
-      .loader__word { opacity: 0; }
     </style>
     <title>BroadPeak International — The bridge between global technology and emerging markets</title>
     <meta
@@ -60,25 +49,10 @@
       <div class="cursor__dot"></div>
     </div>
 
-    <div class="loader" id="loader" role="status" aria-live="polite" aria-busy="true">
-      <div class="loader__veil" aria-hidden="true"></div>
-      <div class="loader__word" aria-label="BroadPeak">
-        <span class="loader__letter" data-char="B"><i class="loader__bar"></i><span class="loader__char">B</span></span>
-        <span class="loader__letter" data-char="R"><i class="loader__bar"></i><span class="loader__char">R</span></span>
-        <span class="loader__letter loader__letter--o" data-char="O"><i class="loader__bar"></i><span class="loader__char">O</span></span>
-        <span class="loader__letter" data-char="A"><i class="loader__bar"></i><span class="loader__char">A</span></span>
-        <span class="loader__letter" data-char="D"><i class="loader__bar"></i><span class="loader__char">D</span></span>
-        <span class="loader__letter" data-char="P"><i class="loader__bar"></i><span class="loader__char">P</span></span>
-        <span class="loader__letter" data-char="E"><i class="loader__bar"></i><span class="loader__char">E</span></span>
-        <span class="loader__letter" data-char="A"><i class="loader__bar"></i><span class="loader__char">A</span></span>
-        <span class="loader__letter" data-char="K"><i class="loader__bar"></i><span class="loader__char">K</span></span>
-      </div>
-    </div>
-
     <aside class="altitude-hud" aria-label="Altitude meter">
       <div class="hero__place">Broad Peak · Karakoram</div>
       <div class="hero__alt tabular" data-altitude>8,051 m</div>
-      <div class="hero__alt-note">Summit 8,051 m. Reaches 0 m at the footer.</div>
+      <!-- <div class="hero__alt-note">Summit 8,051 m. Reaches 0 m at the footer.</div> -->
     </aside>
 
     <header class="header">
@@ -129,18 +103,6 @@
             <div class="hero__phase" data-phase="2">
               <h2>The bridge between global technology and emerging markets.</h2>
             </div>
-            <div class="hero__phase" data-phase="3">
-              <h2>From the summit to the markets below.</h2>
-              <p>A value-driven IT distributor across the Gulf, Africa, and emerging Asian markets.</p>
-            </div>
-            <div class="hero__phase" data-phase="4">
-              <h2>13 markets. One accountable partner.</h2>
-              <p>Pre-sales engineering, logistics, channel support, and post-sale delivery.</p>
-            </div>
-          </div>
-          <div class="hero__hint" aria-hidden="true">
-            Scroll to descend
-            <i></i>
           </div>
         </div>
       </section>
@@ -190,63 +152,89 @@
       </section>
 
       <section class="section markets" id="markets">
-        <div class="wrap wrap--wide markets__layout">
-          <div class="markets__intro">
+        <div class="market-stage">
+          <div class="market-stage__fx" aria-hidden="true">
+            <span class="market-stage__orb"></span>
+            <span class="market-stage__grid"></span>
+          </div>
+          <div class="wrap wrap--wide market-stage__head">
             <p class="kicker">Where we operate</p>
             <h2 class="display">13 markets spread over three continents.</h2>
             <p class="lede">On-ground teams and established channel relationships.</p>
-            <div class="markets__globe" aria-hidden="true">
-              <svg id="markets-globe" viewBox="-48 -8 616 536"></svg>
-            </div>
           </div>
-          <div class="markets__grid">
-            <article class="market-card" data-region="Europe">
-              <span class="market-card__glow"></span>
-              <span class="market-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M12 3c2.4 2.4 3.6 5.4 3.6 9S14.4 18.6 12 21c-2.4-2.4-3.6-5.4-3.6-9S9.6 5.4 12 3Z" />
-                  <path d="M3.6 12h16.8" />
-                </svg>
-              </span>
-              <h3>Europe</h3>
-              <p>United Kingdom</p>
-            </article>
-            <article class="market-card" data-region="Middle East">
-              <span class="market-card__glow"></span>
-              <span class="market-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M12 21s-6.5-5.2-6.5-10.2A6.5 6.5 0 0 1 12 4.3a6.5 6.5 0 0 1 6.5 6.5C18.5 15.8 12 21 12 21Z" />
-                  <circle cx="12" cy="10.6" r="2.1" />
-                </svg>
-              </span>
-              <h3>Middle East</h3>
-              <p>UAE, Oman, and Afghanistan</p>
-            </article>
-            <article class="market-card" data-region="South Asia">
-              <span class="market-card__glow"></span>
-              <span class="market-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="6.5" cy="12" r="2.1" />
-                  <circle cx="17.5" cy="7.5" r="2.1" />
-                  <circle cx="16.5" cy="17" r="2.1" />
-                  <path d="M8.4 11.2 15.4 8.4M8.3 13.1l6.3 2.8M17.1 9.6l-.6 5.3" />
-                </svg>
-              </span>
-              <h3>South Asia</h3>
-              <p>Pakistan, Bangladesh, Sri Lanka, Nepal, and Bhutan</p>
-            </article>
-            <article class="market-card" data-region="East Asia">
-              <span class="market-card__glow"></span>
-              <span class="market-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="12" cy="12" r="3.1" />
-                  <path d="M12 5.2v-2M12 20.8v-2M5.2 12h-2M20.8 12h-2M7 7l-1.5-1.5M18.5 18.5 17 17M17 7l1.5-1.5M7 17l-1.5 1.5" />
-                </svg>
-              </span>
-              <h3>East Asia</h3>
-              <p>Cambodia, Myanmar, Laos, and Mongolia</p>
-            </article>
+          <div class="wrap wrap--wide market-stage__body">
+            <div class="market-stage__nav" role="tablist" aria-label="Regions">
+              <button type="button" role="tab" aria-selected="true" data-stage="Europe" data-index="01">
+                <span class="market-stage__idx">01</span>
+                <span class="market-stage__lab">
+                  <b>Europe</b>
+                  <em>01 market</em>
+                </span>
+              </button>
+              <button type="button" role="tab" aria-selected="false" data-stage="Middle East" data-index="02">
+                <span class="market-stage__idx">02</span>
+                <span class="market-stage__lab">
+                  <b>Middle East</b>
+                  <em>03 markets</em>
+                </span>
+              </button>
+              <button type="button" role="tab" aria-selected="false" data-stage="South Asia" data-index="03">
+                <span class="market-stage__idx">03</span>
+                <span class="market-stage__lab">
+                  <b>South Asia</b>
+                  <em>05 markets</em>
+                </span>
+              </button>
+              <button type="button" role="tab" aria-selected="false" data-stage="East Asia" data-index="04">
+                <span class="market-stage__idx">04</span>
+                <span class="market-stage__lab">
+                  <b>East Asia</b>
+                  <em>04 markets</em>
+                </span>
+              </button>
+            </div>
+            <div class="market-stage__canvas">
+              <div class="market-stage__stamp" aria-hidden="true">01</div>
+              <div class="market-stage__panels">
+                <article class="market-stage__panel is-on" data-stage="Europe">
+                  <p class="market-stage__count">01 market</p>
+                  <h3 class="market-stage__region">Europe</h3>
+                  <ul>
+                    <li><span>01</span><strong>United Kingdom</strong></li>
+                  </ul>
+                </article>
+                <article class="market-stage__panel" data-stage="Middle East">
+                  <p class="market-stage__count">03 markets</p>
+                  <h3 class="market-stage__region">Middle East</h3>
+                  <ul>
+                    <li><span>01</span><strong>UAE</strong></li>
+                    <li><span>02</span><strong>Oman</strong></li>
+                    <li><span>03</span><strong>Afghanistan</strong></li>
+                  </ul>
+                </article>
+                <article class="market-stage__panel" data-stage="South Asia">
+                  <p class="market-stage__count">05 markets</p>
+                  <h3 class="market-stage__region">South Asia</h3>
+                  <ul>
+                    <li><span>01</span><strong>Pakistan</strong></li>
+                    <li><span>02</span><strong>Bangladesh</strong></li>
+                    <li><span>03</span><strong>Sri Lanka</strong></li>
+                    <li><span>04</span><strong>Nepal</strong></li>
+                    <li><span>05</span><strong>Bhutan</strong></li>
+                  </ul>
+                </article>
+                <article class="market-stage__panel" data-stage="East Asia">
+                  <p class="market-stage__count">04 markets</p>
+                  <h3 class="market-stage__region">East Asia</h3>
+                  <ul>
+                    <li><span>01</span><strong>Cambodia</strong></li>
+                    <li><span>02</span><strong>Myanmar</strong></li>
+                    <li><span>03</span><strong>Laos</strong></li>
+                    <li><span>04</span><strong>Mongolia</strong></li>
+                  </ul>
+                </article>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -667,7 +655,6 @@
       <div class="footer__glow" aria-hidden="true"></div>
 
       <div class="footer__chrome">
-        <span class="footer__frame">base.camp</span>
         <a class="footer__totop" href="#hero" data-scroll-to="#hero" aria-label="Back to summit">
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
             <path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
@@ -734,7 +721,6 @@
 
       <div class="wrap wrap--wide footer__meta">
         <span class="footer__file"><i></i> broadpeak-intl.com</span>
-        <span class="footer__base"><i></i> 0 m · base camp</span>
         <span>© BroadPeak International</span>
       </div>
     </footer>

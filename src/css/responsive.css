@@ -115,10 +115,6 @@
     bottom: auto !important;
   }
 
-  .hero__hint {
-    display: none;
-  }
-
   .footer__main {
     grid-template-columns: 1fr;
   }
@@ -222,7 +218,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero__cloud,
-  .hero__hint i,
   .marquee__track,
   .cta__aurora,
   .cta__grid,

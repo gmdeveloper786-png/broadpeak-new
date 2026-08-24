@@ -2,7 +2,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import "lenis/dist/lenis.css";
-import { playLoader } from "./animations/loader.js";
 import { SITE_CONFIG, prefersReducedMotion } from "./config.js";
 import { initSmoothScroll } from "./smooth-scroll.js";
 import { initHeader, playHeaderIntro } from "./animations/header.js";
@@ -48,11 +47,6 @@ async function preloadCritical() {
 async function boot() {
   SITE_CONFIG.reducedMotion = prefersReducedMotion();
 
-  const ready = Promise.race([
-    preloadCritical(),
-    new Promise((r) => setTimeout(r, 2400)),
-  ]);
-
   initSmoothScroll();
   initHeader();
   initHero();
@@ -70,7 +64,10 @@ async function boot() {
   initAltitudeMeter();
   initCursor();
 
-  await playLoader({ ready });
+  await Promise.race([
+    preloadCritical(),
+    new Promise((r) => setTimeout(r, 800)),
+  ]);
   playHeaderIntro();
   requestAnimationFrame(() => ScrollTrigger.refresh());
 }

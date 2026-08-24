@@ -33,7 +33,7 @@ body.is-nav-open {
   position: absolute;
   left: var(--gutter);
   top: 0.75rem;
-  z-index: calc(var(--z-loader) + 1);
+  z-index: calc(var(--z-header) + 1);
   padding: 0.55rem 0.9rem;
   background: var(--brand-primary);
   color: #041018;

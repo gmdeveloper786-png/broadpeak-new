@@ -217,96 +217,6 @@ body.is-nav-open .nav-toggle span::after {
   transform: rotate(-45deg);
 }
 
-.loader {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-loader);
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  background: #050d14;
-}
-
-.loader.is-done {
-  pointer-events: none;
-}
-
-.loader__veil {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: #050d14;
-  pointer-events: none;
-  --hx: 50%;
-  --hy: 50%;
-  --hrx: 0px;
-  --hry: 0px;
-  -webkit-mask-image: radial-gradient(ellipse var(--hrx) var(--hry) at var(--hx) var(--hy), transparent 99.6%, #000 100%);
-  mask-image: radial-gradient(ellipse var(--hrx) var(--hry) at var(--hx) var(--hy), transparent 99.6%, #000 100%);
-}
-
-.loader__word {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.05em;
-  margin: 0;
-  user-select: none;
-  font-kerning: none;
-}
-
-.loader__letter {
-  position: relative;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  flex-shrink: 0;
-  height: 1em;
-  font-family: var(--font-display);
-  font-size: clamp(3.2rem, 9.5vw, 7.4rem);
-  font-weight: 800;
-  font-synthesis: none;
-  line-height: 1;
-  letter-spacing: 0;
-  color: var(--brand-primary);
-  text-shadow: 0 0 28px color-mix(in srgb, var(--brand-primary) 35%, transparent);
-  will-change: transform;
-}
-
-.loader__letter--o {
-  z-index: 2;
-}
-
-.loader__char {
-  display: block;
-  line-height: 1;
-  will-change: transform;
-}
-
-.loader__bar {
-  position: absolute;
-  left: 50%;
-  bottom: 0.14em;
-  z-index: 2;
-  width: 0.2em;
-  height: 0.72em;
-  margin-left: -0.1em;
-  background: var(--brand-primary);
-  box-shadow: 0 0 18px color-mix(in srgb, var(--brand-primary) 45%, transparent);
-  border-radius: 2px;
-  pointer-events: none;
-  will-change: transform, opacity;
-}
-
-html.is-loading .altitude-hud,
-html.is-loading .header {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
 .stat {
   display: grid;
   gap: 0.35rem;
@@ -418,10 +328,6 @@ html.is-loading .header {
 
 .cursor.is-hover .cursor__ring {
   border-color: var(--brand-primary);
-}
-
-html.is-loading .cursor {
-  opacity: 0 !important;
 }
 
 @media (hover: hover) and (pointer: fine) {

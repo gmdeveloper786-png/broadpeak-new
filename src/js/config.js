@@ -13,8 +13,8 @@ export const SITE_CONFIG = {
     range: "Karakoram",
   },
   hero: {
-    desktopScrollDistance: 5.25,
-    mobileScrollDistance: 3.25,
+    desktopScrollDistance: 2.4,
+    mobileScrollDistance: 1.6,
     sequenceFrames: 0,
     sequence: {
       dir: "/assets/hero/sequence/",
