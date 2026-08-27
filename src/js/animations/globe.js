@@ -18,7 +18,24 @@ function latLngToVector3(lat, lng, radius) {
 
 function lookQuat(lat, lng) {
   const from = latLngToVector3(lat, lng, 1).normalize();
-  return new THREE.Quaternion().setFromUnitVectors(from, new THREE.Vector3(0, 0, 1));
+  const q = new THREE.Quaternion().setFromUnitVectors(from, new THREE.Vector3(0, 0, 1));
+  const north = new THREE.Vector3(0, 1, 0).applyQuaternion(q);
+  const projected = new THREE.Vector3(north.x, north.y, 0);
+  if (projected.lengthSq() > 1e-6) {
+    projected.normalize();
+    q.premultiply(new THREE.Quaternion().setFromUnitVectors(projected, new THREE.Vector3(0, 1, 0)));
+  }
+  return q;
+}
+
+function regionCentroid(markers) {
+  if (!markers.length) return { lat: 20, lng: 50 };
+  const acc = new THREE.Vector3();
+  markers.forEach((m) => acc.add(latLngToVector3(m.lat, m.lng, 1)));
+  acc.normalize();
+  const lat = 90 - Math.acos(THREE.MathUtils.clamp(acc.y, -1, 1)) / DEG;
+  const lng = Math.atan2(acc.z, -acc.x) / DEG - 180;
+  return { lat, lng };
 }
 
 function makeGlobeTexture() {
@@ -212,14 +229,6 @@ function makeArc(a, b) {
   return line;
 }
 
-function centroid(markers) {
-  if (!markers.length) return { lat: 20, lng: 50 };
-  return {
-    lat: markers.reduce((s, m) => s + m.lat, 0) / markers.length,
-    lng: markers.reduce((s, m) => s + m.lng, 0) / markers.length,
-  };
-}
-
 export function createMarketGlobe(root) {
   if (!root) return null;
 
@@ -330,23 +339,28 @@ export function createMarketGlobe(root) {
   const labels = MARKETS.map((market) => {
     const el = document.createElement("span");
     el.className = "market-globe__label";
-    el.textContent = market.name;
+    el.innerHTML = `<i class="market-globe__stem" aria-hidden="true"></i><b>${market.name}</b>`;
     labelLayer?.append(el);
-    return { market, el };
+    return { market, el, stem: el.querySelector(".market-globe__stem") };
   });
 
   const look = { lat: MARKET_REGIONS.Europe.lat, lng: MARKET_REGIONS.Europe.lng };
   earth.quaternion.copy(lookQuat(look.lat, look.lng));
+  pivot.rotation.set(0, 0, 0);
 
   let activeRegion = "Europe";
   let dragging = false;
   let lastX = 0;
   let lastY = 0;
   let idle = 0;
+  let holdUntil = 0;
   let visible = false;
   let raf = 0;
   let lookTween;
   const worldPos = new THREE.Vector3();
+  const fromQuat = new THREE.Quaternion();
+  const toQuat = new THREE.Quaternion();
+  const spinQuat = { t: 0 };
 
   const setSize = () => {
     const { clientWidth, clientHeight } = root;
@@ -360,7 +374,7 @@ export function createMarketGlobe(root) {
   const setRegion = (region, { animate = true } = {}) => {
     activeRegion = region;
     const regionMarkets = MARKETS.filter((m) => m.region === region);
-    const focus = MARKET_REGIONS[region] || centroid(regionMarkets);
+    const focus = regionCentroid(regionMarkets);
 
     pins.forEach((pin) => {
       const on = pin.userData.market.region === region;
@@ -386,20 +400,37 @@ export function createMarketGlobe(root) {
     }
 
     lookTween?.kill();
-    const applyLook = () => earth.quaternion.copy(lookQuat(look.lat, look.lng));
+    look.lat = focus.lat;
+    look.lng = focus.lng;
+    toQuat.copy(lookQuat(focus.lat, focus.lng));
+    idle = 0;
+    velX = 0;
+    velY = 0;
+
+    const finishLook = () => {
+      earth.quaternion.copy(toQuat);
+      pivot.rotation.set(0, 0, 0);
+      holdUntil = performance.now() + 1800;
+    };
+
     if (!animate || reduce) {
-      look.lat = focus.lat;
-      look.lng = focus.lng;
-      applyLook();
+      finishLook();
     } else {
-      lookTween = gsap.to(look, {
-        lat: focus.lat,
-        lng: focus.lng,
-        duration: 1.45,
+      fromQuat.copy(earth.quaternion);
+      spinQuat.t = 0;
+      const startX = pivot.rotation.x;
+      const startY = pivot.rotation.y;
+      lookTween = gsap.to(spinQuat, {
+        t: 1,
+        duration: 1.35,
         ease: "power3.inOut",
-        onUpdate: applyLook,
+        onUpdate: () => {
+          earth.quaternion.copy(fromQuat).slerp(toQuat, spinQuat.t);
+          pivot.rotation.x = startX * (1 - spinQuat.t);
+          pivot.rotation.y = startY * (1 - spinQuat.t);
+        },
+        onComplete: finishLook,
       });
-      gsap.to(pivot.rotation, { x: 0, duration: 1.1, ease: "power3.out" });
     }
   };
 
@@ -407,18 +438,74 @@ export function createMarketGlobe(root) {
     if (!labelLayer) return;
     const w = root.clientWidth;
     const h = root.clientHeight;
-    labels.forEach(({ market, el }) => {
+    const placed = [];
+
+    labels.forEach(({ market, el, stem }, i) => {
       const on = market.region === activeRegion;
-      const pin = pins.find((p) => p.userData.market === market);
+      const pin = pins[i];
       pin.getWorldPosition(worldPos);
       const facing = worldPos.z > 0.35;
+      const depth = worldPos.z;
       worldPos.project(camera);
       const show = on && facing && worldPos.z < 1;
       el.classList.toggle("is-on", show);
       if (!show) return;
-      const x = (worldPos.x * 0.5 + 0.5) * w;
-      const y = (-worldPos.y * 0.5 + 0.5) * h;
-      el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      placed.push({
+        el,
+        stem,
+        pinX: (worldPos.x * 0.5 + 0.5) * w,
+        pinY: (-worldPos.y * 0.5 + 0.5) * h,
+        w: Math.max(el.offsetWidth, 72),
+        h: Math.max(el.offsetHeight, 26),
+        depth,
+        x: 0,
+        y: 0,
+      });
+    });
+
+    placed.sort((a, b) => a.pinX - b.pinX);
+
+    const count = placed.length;
+    const spread = Math.min(Math.PI * 0.9, 0.42 + count * 0.22);
+    const radius = 48 + count * 10;
+
+    placed.forEach((item, i) => {
+      const t = count === 1 ? 0.5 : i / (count - 1);
+      const angle = -Math.PI / 2 - spread / 2 + t * spread;
+      item.x = item.pinX + Math.cos(angle) * radius;
+      item.y = item.pinY + Math.sin(angle) * radius;
+    });
+
+    for (let pass = 0; pass < 8; pass += 1) {
+      for (let i = 0; i < count; i += 1) {
+        for (let j = i + 1; j < count; j += 1) {
+          const a = placed[i];
+          const b = placed[j];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const minX = (a.w + b.w) / 2 + 12;
+          const minY = (a.h + b.h) / 2 + 10;
+          if (Math.abs(dx) >= minX || Math.abs(dy) >= minY) continue;
+          const pushX = (minX - Math.abs(dx || 0.01)) * 0.52 * Math.sign(dx || 1);
+          const pushY = (minY - Math.abs(dy || 0.01)) * 0.52 * Math.sign(dy || 1);
+          a.x -= pushX;
+          b.x += pushX;
+          a.y -= pushY;
+          b.y += pushY;
+        }
+      }
+    }
+
+    placed.forEach((item) => {
+      item.x = Math.min(w - item.w / 2 - 8, Math.max(item.w / 2 + 8, item.x));
+      item.y = Math.min(h - item.h / 2 - 8, Math.max(item.h / 2 + 8, item.y));
+      item.el.style.zIndex = String(20 + Math.round(item.depth * 10));
+      item.el.style.transform = `translate3d(${item.x}px, ${item.y}px, 0)`;
+      const dx = item.pinX - item.x;
+      const dy = item.pinY - item.y;
+      const len = Math.hypot(dx, dy);
+      item.stem.style.width = `${Math.max(0, len - 10)}px`;
+      item.stem.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
     });
   };
 
@@ -433,7 +520,9 @@ export function createMarketGlobe(root) {
       if (Math.abs(velY) < 0.00012) velY = 0;
       if (Math.abs(velX) < 0.00012) velX = 0;
       idle += 1;
-      if (idle > 90 && velY === 0) pivot.rotation.y += 0.00115;
+      if (idle > 90 && velY === 0 && performance.now() > holdUntil && !lookTween?.isActive()) {
+        pivot.rotation.y += 0.00115;
+      }
     }
     if (!reduce) {
       stars.rotation.y = t * 0.012;
@@ -469,6 +558,7 @@ export function createMarketGlobe(root) {
   const onPointerDown = (event) => {
     if (event.button != null && event.button !== 0) return;
     event.preventDefault();
+    lookTween?.kill();
     dragging = true;
     idle = 0;
     velX = 0;
@@ -533,7 +623,6 @@ export function createMarketGlobe(root) {
 
   return {
     focusRegion(region) {
-      if (region === activeRegion) return;
       idle = 0;
       setRegion(region, { animate: true });
     },

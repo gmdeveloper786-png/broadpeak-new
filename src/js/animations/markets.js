@@ -20,6 +20,7 @@ export function initMarkets() {
   if (orb) gsap.set(orb, { xPercent: -50, yPercent: -50, x: 420, y: 220 });
 
   const show = (region) => {
+    globe?.focusRegion(region);
     if (region === current) return;
 
     const next = panels.find((panel) => panel.dataset.stage === region);
