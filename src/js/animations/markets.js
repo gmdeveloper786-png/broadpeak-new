@@ -9,9 +9,12 @@ export function initMarkets() {
   const panels = [...root.querySelectorAll(".market-stage__panel")];
   const stamp = root.querySelector(".market-stage__stamp");
   const orb = root.querySelector(".market-stage__orb");
+  const canvas = root.querySelector(".market-stage__canvas");
+  const globeRoot = root.querySelector("[data-globe]");
   const reduce = prefersReducedMotion();
   let current = null;
   let incoming;
+  let globe = null;
 
   gsap.set(panels, { autoAlpha: 0, y: 28 });
   if (orb) gsap.set(orb, { xPercent: -50, yPercent: -50, x: 420, y: 220 });
@@ -30,12 +33,13 @@ export function initMarkets() {
     });
     panels.forEach((panel) => panel.classList.toggle("is-on", panel === next));
     if (stamp && btn) stamp.textContent = btn.dataset.index || "";
+    globe?.focusRegion(region);
 
     incoming?.kill();
     incoming = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     if (prev) {
-      incoming.to(prev, { autoAlpha: 0, y: reduce ? 0 : -20, duration: reduce ? 0 : 0.28 }, 0);
+      incoming.to(prev, { autoAlpha: 0, y: reduce ? 0 : -16, duration: reduce ? 0 : 0.22 }, 0);
     }
 
     const lines = next.querySelectorAll("li");
@@ -43,16 +47,16 @@ export function initMarkets() {
       gsap.set(next, { autoAlpha: 1, y: 0 });
       gsap.set(lines, { autoAlpha: 1, y: 0 });
     } else {
-      gsap.set(lines, { autoAlpha: 0, y: 22 });
+      gsap.set(lines, { autoAlpha: 0, y: 12 });
       incoming.fromTo(
         next,
-        { autoAlpha: 0, y: 24 },
-        { autoAlpha: 1, y: 0, duration: 0.42 },
-        prev ? 0.1 : 0
+        { autoAlpha: 0, y: 18 },
+        { autoAlpha: 1, y: 0, duration: 0.38 },
+        prev ? 0.08 : 0
       );
-      incoming.to(lines, { autoAlpha: 1, y: 0, duration: 0.48, stagger: 0.055 }, "<0.06");
+      incoming.to(lines, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.045 }, "<0.05");
       if (stamp) {
-        incoming.fromTo(stamp, { autoAlpha: 0.2, scale: 0.94 }, { autoAlpha: 1, scale: 1, duration: 0.55 }, 0);
+        incoming.fromTo(stamp, { autoAlpha: 0.18, scale: 0.94 }, { autoAlpha: 0.55, scale: 1, duration: 0.55 }, 0);
       }
     }
   };
@@ -70,6 +74,36 @@ export function initMarkets() {
       xTo(event.clientX - box.left);
       yTo(event.clientY - box.top);
     });
+  }
+
+  const mountGlobe = async () => {
+    try {
+      const { createMarketGlobe } = await import("./globe.js");
+      globe = createMarketGlobe(globeRoot);
+      if (globe) {
+        canvas?.classList.add("has-globe");
+        globeRoot?.classList.add("is-ready");
+        if (current) globe.focusRegion(current);
+      } else {
+        canvas?.classList.remove("has-globe");
+      }
+    } catch {
+      canvas?.classList.remove("has-globe");
+    }
+  };
+
+  if (globeRoot && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        io.disconnect();
+        mountGlobe();
+      },
+      { rootMargin: "320px" }
+    );
+    io.observe(root);
+  } else if (globeRoot) {
+    mountGlobe();
   }
 
   if (nav[0]) show(nav[0].dataset.stage);

@@ -12,6 +12,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           motion: ["gsap", "gsap/ScrollTrigger", "gsap/ScrollToPlugin", "lenis"],
+          three: ["three"],
         },
       },
     },

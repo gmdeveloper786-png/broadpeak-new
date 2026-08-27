@@ -211,7 +211,11 @@
                 </span>
               </button>
             </div>
-            <div class="market-stage__canvas">
+            <div class="market-stage__canvas has-globe">
+              <div class="market-globe" data-globe>
+                <canvas class="market-globe__webgl" aria-hidden="true"></canvas>
+                <div class="market-globe__labels" aria-hidden="true"></div>
+              </div>
               <div class="market-stage__stamp" aria-hidden="true">01</div>
               <div class="market-stage__panels">
                 <article class="market-stage__panel is-on" data-stage="Europe">
@@ -691,7 +695,6 @@
           </a>
           <div class="footer__cta-row">
             <a class="btn btn--solid btn--magnetic footer__btn" href="#contact" data-scroll-to="#contact">Let’s Talk →</a>
-            <p class="footer__live"><i></i> Gulf · Africa · Asia</p>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { prefersReducedMotion, mq } from "../config.js";
 
-const HOVER_SEL = "a, button, [data-scroll-to], .nav-toggle, input, textarea, select, label, .about-stat, .solution";
+const HOVER_SEL = "a, button, [data-scroll-to], .nav-toggle, input, textarea, select, label, .about-stat, .solution, .market-globe__webgl";
 const BLOB_SEL = ".nav__link, .footer__col a";
 
 export function initCursor() {

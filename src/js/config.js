@@ -50,6 +50,13 @@ export const MARKETS = [
   { name: "Mongolia", region: "East Asia", lat: 47.92, lng: 106.92, slug: "mongolia" },
 ];
 
+export const MARKET_REGIONS = {
+  Europe: { lat: 51.5, lng: -0.13, label: "Europe" },
+  "Middle East": { lat: 27.5, lng: 58.5, label: "Middle East" },
+  "South Asia": { lat: 23.8, lng: 82.5, label: "South Asia" },
+  "East Asia": { lat: 26.5, lng: 104.5, label: "East Asia" },
+};
+
 export const VENDORS = [
   { name: "VMware by Broadcom", file: "vendor-vmware.png" },
   { name: "Huawei", file: "vendor-huawei.png" },
