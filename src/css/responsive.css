@@ -174,9 +174,18 @@
     padding-inline: 0.2rem;
   }
 
-  .hero__phase h1,
+  .hero__phase h1 {
+    font-size: clamp(2.35rem, 11vw, 3.35rem);
+  }
+
   .hero__phase h2 {
-    font-size: clamp(1.7rem, 7.4vw, 2.7rem);
+    max-width: 22ch;
+    font-size: clamp(1.08rem, 4.8vw, 1.4rem);
+  }
+
+  .hero__eyebrow {
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
   }
 
   .altitude-hud {
@@ -276,12 +285,12 @@
   }
 
   .hero__place {
-    font-size: 0.52rem;
+    font-size: 0.46rem;
     letter-spacing: 0.1em;
   }
 
   .hero__alt {
-    font-size: 0.95rem;
+    font-size: 0.78rem;
   }
 
   .consult-orbit {
@@ -301,14 +310,29 @@
   }
 
   .solution__row {
-    grid-template-columns: 2.4rem minmax(0, 1fr) auto;
-    min-height: 4.6rem;
-    padding-block: 1.1rem;
-    gap: 0.85rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    min-height: 5.2rem;
+    padding-block: 1.15rem;
+    gap: 1rem;
   }
 
   .solution h3 {
-    font-size: 1.28rem;
+    font-size: 1.22rem;
+  }
+
+  .solution__lede {
+    font-size: 0.84rem;
+  }
+
+  .solution__icon {
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 0.8rem;
+  }
+
+  .solution__icon svg {
+    width: 1.45rem;
+    height: 1.45rem;
   }
 
   .difference__pin {
@@ -323,10 +347,6 @@
     padding-right: 1.4rem;
   }
 
-  .diff-panel__mark {
-    font-size: clamp(2.8rem, 14vw, 4.2rem);
-  }
-
   .footer__main {
     grid-template-columns: 1fr;
     gap: 2.4rem;
@@ -337,7 +357,7 @@
   }
 
   .footer__word {
-    font-size: clamp(2.6rem, 15vw, 6.2rem);
+    font-size: clamp(2rem, 11vw, 4.5rem);
     line-height: 0.82;
     overflow: hidden;
   }
@@ -359,10 +379,6 @@
     padding-block: 4.5rem max(5rem, env(safe-area-inset-bottom));
     padding-inline: var(--gutter);
   }
-
-  .cta h2 {
-    font-size: clamp(2rem, 10vw, 3.4rem);
-  }
 }
 
 @media (max-width: 430px) {
@@ -383,11 +399,7 @@
   }
 
   .solution {
-    grid-template-columns: auto 1fr;
-  }
-
-  .solution img {
-    display: none;
+    grid-template-columns: 1fr;
   }
 
   .footer__cols {

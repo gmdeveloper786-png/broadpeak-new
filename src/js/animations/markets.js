@@ -7,7 +7,6 @@ export function initMarkets() {
 
   const nav = [...root.querySelectorAll(".market-stage__nav [data-stage]")];
   const panels = [...root.querySelectorAll(".market-stage__panel")];
-  const stamp = root.querySelector(".market-stage__stamp");
   const orb = root.querySelector(".market-stage__orb");
   const canvas = root.querySelector(".market-stage__canvas");
   const globeRoot = root.querySelector("[data-globe]");
@@ -25,7 +24,6 @@ export function initMarkets() {
 
     const next = panels.find((panel) => panel.dataset.stage === region);
     const prev = panels.find((panel) => panel.dataset.stage === current);
-    const btn = nav.find((item) => item.dataset.stage === region);
     if (!next) return;
 
     current = region;
@@ -33,8 +31,6 @@ export function initMarkets() {
       item.setAttribute("aria-selected", String(item.dataset.stage === region));
     });
     panels.forEach((panel) => panel.classList.toggle("is-on", panel === next));
-    if (stamp && btn) stamp.textContent = btn.dataset.index || "";
-    globe?.focusRegion(region);
 
     incoming?.kill();
     incoming = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -56,9 +52,6 @@ export function initMarkets() {
         prev ? 0.08 : 0
       );
       incoming.to(lines, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.045 }, "<0.05");
-      if (stamp) {
-        incoming.fromTo(stamp, { autoAlpha: 0.18, scale: 0.94 }, { autoAlpha: 0.55, scale: 1, duration: 0.55 }, 0);
-      }
     }
   };
 

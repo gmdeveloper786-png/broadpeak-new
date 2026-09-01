@@ -92,7 +92,6 @@
           <a class="nav-sheet__link" href="#consultancy"><span>07</span>Consultancy</a>
           <a class="nav-sheet__link" href="#contact"><span>08</span>Contact</a>
         </nav>
-        <a class="btn btn--solid nav-sheet__cta" href="#contact" data-scroll-to="#contact">Let’s Talk</a>
       </div>
     </div>
 
@@ -115,12 +114,12 @@
 
           <div class="hero__phases">
             <div class="hero__phase" data-phase="1">
-              <p class="kicker">The summit we take our name from</p>
-              <h1>Broad Peak</h1>
-              <p>Karakoram · 8,051 m</p>
-            </div>
-            <div class="hero__phase" data-phase="2">
-              <h2>The bridge between global technology and emerging markets.</h2>
+              <div class="hero__copy">
+                <p class="hero__eyebrow">Karakoram · 8,051 m</p>
+                <h1>Broad Peak</h1>
+                <div class="hero__rule" aria-hidden="true"></div>
+                <h2>The bridge between global technology and <em>emerging markets</em>.</h2>
+              </div>
             </div>
           </div>
         </div>
@@ -142,25 +141,21 @@
           <div class="about__rule" aria-hidden="true"><i></i></div>
           <div class="wrap wrap--wide about__stats">
             <article class="about-stat">
-              <span class="about-stat__idx tabular">01</span>
               <div class="about-stat__value tabular" data-count="13">13</div>
               <div class="about-stat__label">markets served</div>
               <p class="about-stat__note">Three continents</p>
             </article>
             <article class="about-stat">
-              <span class="about-stat__idx tabular">02</span>
               <div class="about-stat__value tabular" data-count="13plus">13+</div>
               <div class="about-stat__label">global vendor lines</div>
               <p class="about-stat__note">Under one relationship</p>
             </article>
             <article class="about-stat">
-              <span class="about-stat__idx tabular">03</span>
               <div class="about-stat__value tabular" data-count="9">9</div>
               <div class="about-stat__label">solution domains</div>
               <p class="about-stat__note">Edge to core to cloud</p>
             </article>
             <article class="about-stat">
-              <span class="about-stat__idx tabular">04</span>
               <div class="about-stat__value tabular" data-count="360">360°</div>
               <div class="about-stat__label">presales → post-sale</div>
               <p class="about-stat__note">Engineering, logistics, support</p>
@@ -182,32 +177,28 @@
           </div>
           <div class="wrap wrap--wide market-stage__body">
             <div class="market-stage__nav" role="tablist" aria-label="Regions">
-              <button type="button" role="tab" aria-selected="true" data-stage="Europe" data-index="01">
-                <span class="market-stage__idx">01</span>
+              <button type="button" role="tab" aria-selected="true" data-stage="Europe">
                 <span class="market-stage__lab">
                   <b>Europe</b>
-                  <em>01 market</em>
+                  <em>1 market</em>
                 </span>
               </button>
-              <button type="button" role="tab" aria-selected="false" data-stage="Middle East" data-index="02">
-                <span class="market-stage__idx">02</span>
+              <button type="button" role="tab" aria-selected="false" data-stage="Middle East">
                 <span class="market-stage__lab">
                   <b>Middle East</b>
-                  <em>03 markets</em>
+                  <em>3 markets</em>
                 </span>
               </button>
-              <button type="button" role="tab" aria-selected="false" data-stage="South Asia" data-index="03">
-                <span class="market-stage__idx">03</span>
+              <button type="button" role="tab" aria-selected="false" data-stage="South Asia">
                 <span class="market-stage__lab">
                   <b>South Asia</b>
-                  <em>05 markets</em>
+                  <em>5 markets</em>
                 </span>
               </button>
-              <button type="button" role="tab" aria-selected="false" data-stage="East Asia" data-index="04">
-                <span class="market-stage__idx">04</span>
+              <button type="button" role="tab" aria-selected="false" data-stage="East Asia">
                 <span class="market-stage__lab">
                   <b>East Asia</b>
-                  <em>04 markets</em>
+                  <em>4 markets</em>
                 </span>
               </button>
             </div>
@@ -216,43 +207,38 @@
                 <canvas class="market-globe__webgl" aria-hidden="true"></canvas>
                 <div class="market-globe__labels" aria-hidden="true"></div>
               </div>
-              <div class="market-stage__stamp" aria-hidden="true">01</div>
               <div class="market-stage__panels">
                 <article class="market-stage__panel is-on" data-stage="Europe">
-                  <p class="market-stage__count">01 market</p>
                   <h3 class="market-stage__region">Europe</h3>
                   <ul>
-                    <li><span>01</span><strong>United Kingdom</strong></li>
+                    <li><strong>United Kingdom</strong></li>
                   </ul>
                 </article>
                 <article class="market-stage__panel" data-stage="Middle East">
-                  <p class="market-stage__count">03 markets</p>
                   <h3 class="market-stage__region">Middle East</h3>
                   <ul>
-                    <li><span>01</span><strong>UAE</strong></li>
-                    <li><span>02</span><strong>Oman</strong></li>
-                    <li><span>03</span><strong>Afghanistan</strong></li>
+                    <li><strong>UAE</strong></li>
+                    <li><strong>Oman</strong></li>
+                    <li><strong>Afghanistan</strong></li>
                   </ul>
                 </article>
                 <article class="market-stage__panel" data-stage="South Asia">
-                  <p class="market-stage__count">05 markets</p>
                   <h3 class="market-stage__region">South Asia</h3>
                   <ul>
-                    <li><span>01</span><strong>Pakistan</strong></li>
-                    <li><span>02</span><strong>Bangladesh</strong></li>
-                    <li><span>03</span><strong>Sri Lanka</strong></li>
-                    <li><span>04</span><strong>Nepal</strong></li>
-                    <li><span>05</span><strong>Bhutan</strong></li>
+                    <li><strong>Pakistan</strong></li>
+                    <li><strong>Bangladesh</strong></li>
+                    <li><strong>Sri Lanka</strong></li>
+                    <li><strong>Nepal</strong></li>
+                    <li><strong>Bhutan</strong></li>
                   </ul>
                 </article>
                 <article class="market-stage__panel" data-stage="East Asia">
-                  <p class="market-stage__count">04 markets</p>
                   <h3 class="market-stage__region">East Asia</h3>
                   <ul>
-                    <li><span>01</span><strong>Cambodia</strong></li>
-                    <li><span>02</span><strong>Myanmar</strong></li>
-                    <li><span>03</span><strong>Laos</strong></li>
-                    <li><span>04</span><strong>Mongolia</strong></li>
+                    <li><strong>Cambodia</strong></li>
+                    <li><strong>Myanmar</strong></li>
+                    <li><strong>Laos</strong></li>
+                    <li><strong>Mongolia</strong></li>
                   </ul>
                 </article>
               </div>
@@ -270,74 +256,95 @@
           </div>
         </div>
         <div class="solutions__rail">
-          <article class="solution" data-index="01" data-title="On-prem" data-icon="/assets/icons/icon-onprem.png">
+          <article class="solution" data-icon="onprem" data-title="On-prem" data-desc="Servers, storage, and workplace platforms for hybrid estates — sourced, imported, and supported in-market.">
             <div class="wrap solution__row">
-              <span class="solution__index tabular">01</span>
-              <h3>On-prem</h3>
-              <img class="solution__icon" src="/assets/icons/icon-onprem.png" alt="" width="48" height="48" />
+              <div class="solution__copy">
+                <h3>On-prem</h3>
+                <p class="solution__lede">Enterprise compute, storage, and endpoints for channel partners.</p>
+              </div>
+              <div class="solution__icon" aria-hidden="true"></div>
             </div>
           </article>
-          <article class="solution" data-index="02" data-title="Cloud" data-icon="/assets/icons/icon-cloud.png">
+          <article class="solution" data-icon="cloud" data-title="Cloud" data-desc="Public, private, and hybrid cloud workloads with local fulfilment, billing, and partner enablement.">
             <div class="wrap solution__row">
-              <span class="solution__index tabular">02</span>
-              <h3>Cloud</h3>
-              <img class="solution__icon" src="/assets/icons/icon-cloud.png" alt="" width="48" height="48" />
+              <div class="solution__copy">
+                <h3>Cloud</h3>
+                <p class="solution__lede">IaaS, PaaS, and SaaS delivered with in-country commercial terms.</p>
+              </div>
+              <div class="solution__icon" aria-hidden="true"></div>
             </div>
           </article>
-          <article class="solution" data-index="03" data-title="Data center" data-icon="/assets/icons/icon-datacenter.png">
+          <article class="solution" data-icon="datacenter" data-title="Data center" data-desc="Compute, power, and cooling for colocation and enterprise facilities across our footprint.">
             <div class="wrap solution__row">
-              <span class="solution__index tabular">03</span>
-              <h3>Data center</h3>
-              <img class="solution__icon" src="/assets/icons/icon-datacenter.png" alt="" width="48" height="48" />
+              <div class="solution__copy">
+                <h3>Data center</h3>
+                <p class="solution__lede">Facility-ready platforms for modern, resilient operations.</p>
+              </div>
+              <div class="solution__icon" aria-hidden="true"></div>
             </div>
           </article>
-          <article class="solution" data-index="04" data-title="Infrastructure" data-icon="/assets/icons/icon-infrastructure.png">
+          <article class="solution" data-icon="infrastructure" data-title="Infrastructure" data-desc="Networking, virtualisation, and core platform foundations that keep estates stable at scale.">
             <div class="wrap solution__row">
-              <span class="solution__index tabular">04</span>
-              <h3>Infrastructure</h3>
-              <img class="solution__icon" src="/assets/icons/icon-infrastructure.png" alt="" width="48" height="48" />
+              <div class="solution__copy">
+                <h3>Infrastructure</h3>
+                <p class="solution__lede">Core platforms and virtualisation for growing partner pipelines.</p>
+              </div>
+              <div class="solution__icon" aria-hidden="true"></div>
             </div>
           </article>
-          <article class="solution" data-index="05" data-title="Connectivity" data-icon="/assets/icons/icon-connectivity.png">
+          <article class="solution" data-icon="connectivity" data-title="Connectivity" data-desc="WAN, SD-WAN, and secure edge links that connect branches, partners, and cloud across regions.">
             <div class="wrap solution__row">
-              <span class="solution__index tabular">05</span>
-              <h3>Connectivity</h3>
-              <img class="solution__icon" src="/assets/icons/icon-connectivity.png" alt="" width="48" height="48" />
+              <div class="solution__copy">
+                <h3>Connectivity</h3>
+                <p class="solution__lede">Secure networking from branch edge to core and cloud.</p>
+              </div>
+              <div class="solution__icon" aria-hidden="true"></div>
             </div>
           </article>
-          <article class="solution" data-index="06" data-title="Observability" data-icon="/assets/icons/icon-observability.png">
+          <article class="solution" data-icon="observability" data-title="Observability" data-desc="Monitoring, logging, and APM that give operations teams visibility before issues reach customers.">
             <div class="wrap solution__row">
-              <span class="solution__index tabular">06</span>
-              <h3>Observability</h3>
-              <img class="solution__icon" src="/assets/icons/icon-observability.png" alt="" width="48" height="48" />
+              <div class="solution__copy">
+                <h3>Observability</h3>
+                <p class="solution__lede">Full-stack visibility for proactive operations teams.</p>
+              </div>
+              <div class="solution__icon" aria-hidden="true"></div>
             </div>
           </article>
-          <article class="solution" data-index="07" data-title="Cyber Security" data-icon="/assets/icons/icon-cyber.png">
+          <article class="solution" data-icon="cyber" data-title="Cyber Security" data-desc="Zero trust, endpoint, and perimeter protection — positioned and supported for channel resale.">
             <div class="wrap solution__row">
-              <span class="solution__index tabular">07</span>
-              <h3>Cyber Security</h3>
-              <img class="solution__icon" src="/assets/icons/icon-cyber.png" alt="" width="48" height="48" />
+              <div class="solution__copy">
+                <h3>Cyber Security</h3>
+                <p class="solution__lede">Defence-in-depth portfolios partners can deploy with confidence.</p>
+              </div>
+              <div class="solution__icon" aria-hidden="true"></div>
             </div>
           </article>
-          <article class="solution" data-index="08" data-title="AI & data" data-icon="/assets/icons/icon-ai-data.png">
+          <article class="solution" data-icon="ai" data-title="AI &amp; data" data-desc="Analytics, ML platforms, and data pipelines that turn information into actionable partner revenue.">
             <div class="wrap solution__row">
-              <span class="solution__index tabular">08</span>
-              <h3>AI &amp; data</h3>
-              <img class="solution__icon" src="/assets/icons/icon-ai-data.png" alt="" width="48" height="48" />
+              <div class="solution__copy">
+                <h3>AI &amp; data</h3>
+                <p class="solution__lede">Data platforms and AI tooling for the next wave of demand.</p>
+              </div>
+              <div class="solution__icon" aria-hidden="true"></div>
             </div>
           </article>
-          <article class="solution" data-index="09" data-title="Disaster recovery & data protection" data-icon="/assets/icons/icon-dr.png">
+          <article class="solution" data-icon="dr" data-title="Disaster recovery &amp; data protection" data-desc="Backup, replication, and business continuity solutions that protect partner and end-customer estates.">
             <div class="wrap solution__row">
-              <span class="solution__index tabular">09</span>
-              <h3>Disaster recovery &amp; data protection</h3>
-              <img class="solution__icon" src="/assets/icons/icon-dr.png" alt="" width="48" height="48" />
+              <div class="solution__copy">
+                <h3>Disaster recovery &amp; data protection</h3>
+                <p class="solution__lede">Resilience and recovery built into every deployment.</p>
+              </div>
+              <div class="solution__icon" aria-hidden="true"></div>
             </div>
           </article>
           <div class="solution-card" aria-hidden="true">
-            <p class="solution-card__meta"></p>
+            <p class="solution-card__meta">Technology focus</p>
+            <div class="solution-card__visual" aria-hidden="true">
+              <div class="solution-card__orb"></div>
+              <div class="solution-card__icon"></div>
+            </div>
             <p class="solution-card__name"></p>
-            <div class="solution-card__orb"></div>
-            <img class="solution-card__icon" alt="" />
+            <p class="solution-card__desc"></p>
           </div>
         </div>
       </section>
@@ -392,50 +399,26 @@
           <div class="diff-viewport">
             <div class="diff-track">
               <article class="diff-panel">
-                <div class="diff-panel__mark">
-                  <span class="diff-panel__idx tabular">01</span>
-                  <span class="diff-panel__dot" aria-hidden="true"></span>
-                </div>
                 <h3>Regional expertise</h3>
                 <p>Deep market insight and in-country teams across Gulf, Africa &amp; Emerging Asia.</p>
               </article>
               <article class="diff-panel">
-                <div class="diff-panel__mark">
-                  <span class="diff-panel__idx tabular">02</span>
-                  <span class="diff-panel__dot" aria-hidden="true"></span>
-                </div>
                 <h3>Pre-sales</h3>
                 <p>Certified engineers supporting design, configurations and POCs.</p>
               </article>
               <article class="diff-panel">
-                <div class="diff-panel__mark">
-                  <span class="diff-panel__idx tabular">03</span>
-                  <span class="diff-panel__dot" aria-hidden="true"></span>
-                </div>
                 <h3>Incremental business</h3>
                 <p>We open markets and accounts vendors can't reach directly.</p>
               </article>
               <article class="diff-panel">
-                <div class="diff-panel__mark">
-                  <span class="diff-panel__idx tabular">04</span>
-                  <span class="diff-panel__dot" aria-hidden="true"></span>
-                </div>
                 <h3>Operations &amp; logistics</h3>
                 <p>Experienced teams managing import, compliance, and delivery in complex markets.</p>
               </article>
               <article class="diff-panel">
-                <div class="diff-panel__mark">
-                  <span class="diff-panel__idx tabular">05</span>
-                  <span class="diff-panel__dot" aria-hidden="true"></span>
-                </div>
                 <h3>Post-sale support</h3>
                 <p>Responsive customer service and support long after the deal closes.</p>
               </article>
               <article class="diff-panel">
-                <div class="diff-panel__mark">
-                  <span class="diff-panel__idx tabular">06</span>
-                  <span class="diff-panel__dot" aria-hidden="true"></span>
-                </div>
                 <h3>Trusted relationships</h3>
                 <p>Partnerships built on trust, transparency, and long-term growth.</p>
               </article>
@@ -547,42 +530,22 @@
 
           <div class="process__stage">
             <article class="process-card" data-step="0">
-              <p class="process-card__mark">
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.2 14.8 8 8 14.8 1.2 8Z" /></svg>
-                <span>01</span>
-              </p>
               <h3>Onboard</h3>
               <p>Sign the vendor, set commercial terms, and map the addressable channel.</p>
             </article>
             <article class="process-card" data-step="1">
-              <p class="process-card__mark">
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.2 14.8 8 8 14.8 1.2 8Z" /></svg>
-                <span>02</span>
-              </p>
               <h3>Enable</h3>
               <p>Train partners, certify presales engineers, and stock inventory.</p>
             </article>
             <article class="process-card" data-step="2">
-              <p class="process-card__mark">
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.2 14.8 8 8 14.8 1.2 8Z" /></svg>
-                <span>03</span>
-              </p>
               <h3>Generate Demand</h3>
               <p>Build pipeline through partner marketing, events, and account mapping.</p>
             </article>
             <article class="process-card" data-step="3">
-              <p class="process-card__mark">
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.2 14.8 8 8 14.8 1.2 8Z" /></svg>
-                <span>04</span>
-              </p>
               <h3>Fulfil</h3>
               <p>Handle import, logistics, and post-sale support to close the loop.</p>
             </article>
             <article class="process-card" data-step="4">
-              <p class="process-card__mark">
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.2 14.8 8 8 14.8 1.2 8Z" /></svg>
-                <span>05</span>
-              </p>
               <h3>Grow</h3>
               <p>Expand into new accounts and markets on the vendor's behalf.</p>
             </article>
@@ -609,37 +572,31 @@
             <div class="consult-orbit">
               <article class="consult-card" data-float="0">
                 <img src="/assets/icons/icon-architecture.png" alt="" width="40" height="40" />
-                <div class="consult-card__idx tabular">01</div>
                 <h3>Architecture</h3>
                 <p>Enterprise ecosystem design and roadmap creation.</p>
               </article>
               <article class="consult-card" data-float="1">
                 <img src="/assets/icons/icon-tech-refresh.png" alt="" width="40" height="40" />
-                <div class="consult-card__idx tabular">02</div>
                 <h3>Tech refresh</h3>
                 <p>Lifecycle planning and migration for ageing infrastructure.</p>
               </article>
               <article class="consult-card" data-float="2">
                 <img src="/assets/icons/icon-cloud-adoption.png" alt="" width="40" height="40" />
-                <div class="consult-card__idx tabular">03</div>
                 <h3>Cloud adoption</h3>
                 <p>Migration strategy, workload assessment, and cloud landing zone.</p>
               </article>
               <article class="consult-card" data-float="3">
                 <img src="/assets/icons/icon-cyber-consult.png" alt="" width="40" height="40" />
-                <div class="consult-card__idx tabular">04</div>
                 <h3>Cyber security</h3>
                 <p>Risk assessments, security architecture, and control implementation.</p>
               </article>
               <article class="consult-card" data-float="4">
                 <img src="/assets/icons/icon-standards.png" alt="" width="40" height="40" />
-                <div class="consult-card__idx tabular">05</div>
                 <h3>Standards auditing</h3>
                 <p>Compliance and standards audits.</p>
               </article>
               <article class="consult-card" data-float="5">
                 <img src="/assets/icons/icon-ai-adoption.png" alt="" width="40" height="40" />
-                <div class="consult-card__idx tabular">06</div>
                 <h3>AI adoption</h3>
                 <p>Readiness assessments and roadmaps for adopting AI.</p>
               </article>
@@ -667,7 +624,7 @@
           <p class="kicker">Next elevation</p>
           <h2 class="display">Let’s work together.</h2>
           <p class="lede">From strategy to execution, we're committed to your success at every stage.</p>
-          <a class="btn btn--solid btn--magnetic" href="https://www.broadpeak-intl.com" rel="noopener">www.broadpeak-intl.com</a>
+          <a class="btn btn--solid btn--magnetic" href="mailto:info@broadpeak-intl.com">Let’s Talk</a>
         </div>
       </section>
     </main>
@@ -687,15 +644,13 @@
       <div class="wrap wrap--wide footer__main">
         <div class="footer__cta">
           <p class="footer__eyebrow">Ready for the next ascent?</p>
-          <a class="footer__mail" href="https://www.broadpeak-intl.com" rel="noopener">
-            www.broadpeak-intl.com
+          <a class="footer__mail" href="mailto:info@broadpeak-intl.com">
+            info@broadpeak-intl.com
             <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
               <path d="M3 13 13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </a>
-          <div class="footer__cta-row">
-            <a class="btn btn--solid btn--magnetic footer__btn" href="#contact" data-scroll-to="#contact">Let’s Talk →</a>
-          </div>
+          <p class="footer__address">5th Floor, 167 - 169 Great Portland St, London W1W 5PF, UK</p>
         </div>
 
         <div class="footer__cols">
@@ -715,8 +670,7 @@
           </nav>
           <nav class="footer__col" aria-label="Connect">
             <h3>Connect</h3>
-            <a href="https://www.broadpeak-intl.com" rel="noopener">Website</a>
-            <a href="#contact" data-scroll-to="#contact">Let’s Talk</a>
+            <a href="mailto:info@broadpeak-intl.com">info@broadpeak-intl.com</a>
             <a href="#hero" data-scroll-to="#hero">Summit</a>
           </nav>
         </div>
@@ -741,8 +695,9 @@
       </div>
 
       <div class="wrap wrap--wide footer__meta">
-        <span class="footer__file"><i></i> broadpeak-intl.com</span>
-        <span>© BroadPeak International</span>
+        <a class="footer__file" href="mailto:info@broadpeak-intl.com"><i></i> info@broadpeak-intl.com</a>
+        <span class="footer__base">© BroadPeak International</span>
+        <span class="footer__meta-address">London W1W 5PF, UK</span>
       </div>
     </footer>
 

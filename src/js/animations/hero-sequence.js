@@ -25,18 +25,22 @@ async function loadImage(src) {
  * Draw one mountain still as a camera descent:
  * progress 0 = top of image (summit)
  * progress 1 = bottom of image (lower terrain)
- * Image is scaled to cover the viewport and keep extra height to pan through.
  */
-function drawDescent(ctx, img, w, h, progress, extraHeight) {
+function drawDescent(ctx, img, w, h, progress, descent = {}) {
   if (!img?.width || !w || !h) return;
-  const cover = Math.max(w / img.width, h / img.height);
+  const extraHeight = descent.extraHeight ?? 1.8;
+  const bottomCrop = descent.bottomCrop ?? 0;
+  const maxPan = descent.maxPan ?? 1;
+  const zoom = descent.zoom ?? 1;
+
+  const cover = Math.max(w / img.width, h / img.height) * zoom;
   const minH = h * extraHeight;
   const scale = Math.max(cover, minH / img.height);
   const dw = img.width * scale;
   const dh = img.height * scale;
   const dx = (w - dw) / 2;
-  const maxPan = Math.max(0, dh - h);
-  const dy = -maxPan * progress;
+  const maxPanDist = Math.max(0, dh - h);
+  const dy = -maxPanDist * maxPan * progress - bottomCrop * h;
   ctx.drawImage(img, dx, dy, dw, dh);
 }
 
@@ -51,7 +55,7 @@ function drawCover(ctx, img, w, h) {
 export function createHeroRenderer(canvas) {
   const ctx = canvas.getContext("2d", { alpha: false });
   const seq = SITE_CONFIG.hero.sequence;
-  const extraHeight = SITE_CONFIG.hero.descent?.extraHeight ?? 1.8;
+  const descent = SITE_CONFIG.hero.descent ?? {};
   const frames = [];
   let still = null;
   let mode = seq.count > 0 ? "sequence" : "descent";
@@ -97,7 +101,7 @@ export function createHeroRenderer(canvas) {
     lastProgress = progress;
     ctx.fillStyle = "#050b12";
     ctx.fillRect(0, 0, width, height);
-    drawDescent(ctx, still, width, height, progress, extraHeight);
+    drawDescent(ctx, still, width, height, progress, descent);
   }
 
   function render(progress) {

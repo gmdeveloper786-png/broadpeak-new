@@ -75,16 +75,8 @@ export function initHero() {
       gsap.set(phases, { autoAlpha: 0, xPercent: -50, yPercent: -50, y: 36 });
       gsap.set(phases[0], { autoAlpha: 1, y: 0 });
 
-      tl.to(phases[0], { autoAlpha: 0, y: -32, duration: 0.22 }, 0.18);
-      if (phases[1]) {
-        tl.fromTo(
-          phases[1],
-          { autoAlpha: 0, y: 36 },
-          { autoAlpha: 1, y: 0, duration: 0.22 },
-          0.28
-        );
-      }
-      if (mist) tl.to(mist, { opacity: 1, yPercent: 8, duration: 0.4 }, 0.45);
+      tl.to(phases[0], { autoAlpha: 0, y: -24, duration: 0.28 }, 0.58);
+      if (mist) tl.to(mist, { opacity: 1, yPercent: 8, duration: 0.32 }, 0.62);
 
       return () => {};
     }

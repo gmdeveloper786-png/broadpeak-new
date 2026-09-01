@@ -6,6 +6,10 @@ export const SITE_CONFIG = {
   name: "BroadPeak International",
   url: "https://www.broadpeak-intl.com",
   canonical: "https://www.broadpeak-intl.com/",
+  contact: {
+    email: "info@broadpeak-intl.com",
+    address: "5th Floor, 167 - 169 Great Portland St, London W1W 5PF, UK",
+  },
   summitAltitude: 8051,
   endAltitude: 0,
   mountain: {
@@ -13,8 +17,8 @@ export const SITE_CONFIG = {
     range: "Karakoram",
   },
   hero: {
-    desktopScrollDistance: 2.4,
-    mobileScrollDistance: 1.6,
+    desktopScrollDistance: 0.92,
+    mobileScrollDistance: 0.78,
     sequenceFrames: 0,
     sequence: {
       dir: "/assets/hero/sequence/",
@@ -26,7 +30,10 @@ export const SITE_CONFIG = {
     },
     image: "/assets/mountains/summit.webp",
     descent: {
-      extraHeight: 2.7,
+      extraHeight: 2.0,
+      bottomCrop: 0.18,
+      maxPan: 0.52,
+      zoom: 1.1,
     },
     preloadCount: 8,
     dprMax: 2,

@@ -30,3 +30,26 @@
     will-change: transform;
   }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__copy > * {
+    animation: hero-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hero__copy > .hero__eyebrow { animation-delay: 0.42s; }
+  .hero__copy > h1 { animation-delay: 0.54s; }
+  .hero__copy > .hero__rule { animation-delay: 0.66s; }
+  .hero__copy > h2 { animation-delay: 0.78s; }
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

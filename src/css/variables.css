@@ -22,6 +22,8 @@
   --font-body: "Source Sans 3", sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
+  --display-size: clamp(1.65rem, 3.1vw, 2.45rem);
+
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 

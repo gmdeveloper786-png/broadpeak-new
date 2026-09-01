@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import { prefersReducedMotion, mq } from "../config.js";
+import { SOLUTION_ICONS } from "../data/solution-icons.js";
 
 export function initSolutions() {
   const section = document.querySelector("#solutions");
@@ -8,10 +9,16 @@ export function initSolutions() {
   if (!section || !rail) return;
 
   const items = gsap.utils.toArray(section.querySelectorAll(".solution"));
-  const meta = card?.querySelector(".solution-card__meta");
   const name = card?.querySelector(".solution-card__name");
+  const desc = card?.querySelector(".solution-card__desc");
   const icon = card?.querySelector(".solution-card__icon");
   const fine = window.matchMedia(mq.finePointer);
+
+  items.forEach((item) => {
+    const key = item.dataset.icon;
+    const slot = item.querySelector(".solution__icon");
+    if (slot && key && SOLUTION_ICONS[key]) slot.innerHTML = SOLUTION_ICONS[key];
+  });
 
   if (!prefersReducedMotion()) {
     gsap.from(section.querySelectorAll(".section__head .kicker, .section__head .lede"), {
@@ -39,7 +46,7 @@ export function initSolutions() {
 
   if (!card || prefersReducedMotion() || !fine.matches) return;
 
-  card.style.display = "block";
+  card.style.display = "grid";
   gsap.set(card, { autoAlpha: 0, scale: 0.9, xPercent: -32, yPercent: -50 });
 
   const xTo = gsap.quickTo(card, "x", { duration: 0.55, ease: "power3" });
@@ -49,12 +56,10 @@ export function initSolutions() {
 
   const fill = (row) => {
     items.forEach((item) => item.classList.toggle("is-active", item === row));
-    if (meta) meta.textContent = `${row.dataset.index} / FOCUS`;
     if (name) name.textContent = row.dataset.title ?? "";
-    if (icon && row.dataset.icon) {
-      icon.src = row.dataset.icon;
-      icon.alt = row.dataset.title ?? "";
-    }
+    if (desc) desc.textContent = row.dataset.desc ?? "";
+    const rowIcon = row.querySelector(".solution__icon");
+    if (icon && rowIcon) icon.innerHTML = rowIcon.innerHTML;
   };
 
   const follow = (clientX, clientY) => {
