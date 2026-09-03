@@ -22,7 +22,7 @@
 .btn--solid {
   background: var(--brand-primary);
   border-color: var(--brand-primary);
-  color: #041018;
+  color: #ffffff;
 }
 
 .btn--solid:hover {
@@ -94,14 +94,14 @@
 }
 
 .logo img {
-  height: 1.7rem;
+  height: 2.50rem;
   width: auto;
   mix-blend-mode: screen;
   transition: height 0.35s var(--ease-out);
 }
 
 .header.is-scrolled .logo img {
-  height: 1.5rem;
+  height: 2.25rem;
 }
 
 .nav {
@@ -119,7 +119,7 @@
   isolation: isolate;
   z-index: 1;
   padding: 0.45rem 0.68rem;
-  color: var(--text-secondary);
+  color: var(--text-white);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -163,7 +163,7 @@
 }
 
 .nav__link.is-active {
-  color: var(--text-primary);
+  color: var(--brand-accent);
 }
 
 .header__cta {
