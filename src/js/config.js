@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
   canonical: "https://www.broadpeak-intl.com/",
   contact: {
     email: "info@broadpeak-intl.com",
-    address: "5th Floor, 167 - 169 Great Portland St, London W1W 5PF, UK",
+    address: "Unit No. 117-03, BCW, First Floor, Jafza View18, Jebel Ali Free Zone Dubai, United Arab Emirates",
   },
   summitAltitude: 8051,
   endAltitude: 0,
@@ -42,26 +42,28 @@ export const SITE_CONFIG = {
 };
 
 export const MARKETS = [
-  { name: "United Kingdom", region: "Europe", lat: 51.51, lng: -0.13, slug: "united-kingdom" },
   { name: "UAE", region: "Middle East", lat: 24.45, lng: 54.38, slug: "uae" },
   { name: "Oman", region: "Middle East", lat: 23.59, lng: 58.38, slug: "oman" },
-  { name: "Afghanistan", region: "Middle East", lat: 34.53, lng: 69.17, slug: "afghanistan" },
+  { name: "Qatar", region: "Middle East", lat: 25.29, lng: 51.53, slug: "qatar" },
+  { name: "Kuwait", region: "Middle East", lat: 29.38, lng: 47.98, slug: "kuwait" },
+  { name: "Bahrain", region: "Middle East", lat: 26.23, lng: 50.59, slug: "bahrain" },
   { name: "Pakistan", region: "South Asia", lat: 33.68, lng: 73.05, slug: "pakistan" },
-  { name: "Bangladesh", region: "South Asia", lat: 23.81, lng: 90.41, slug: "bangladesh" },
-  { name: "Sri Lanka", region: "South Asia", lat: 6.93, lng: 79.85, slug: "sri-lanka" },
   { name: "Nepal", region: "South Asia", lat: 27.72, lng: 85.32, slug: "nepal" },
+  { name: "Bangladesh", region: "South Asia", lat: 23.81, lng: 90.41, slug: "bangladesh" },
   { name: "Bhutan", region: "South Asia", lat: 27.47, lng: 89.64, slug: "bhutan" },
+  { name: "Sri Lanka", region: "South Asia", lat: 6.93, lng: 79.85, slug: "sri-lanka" },
+  { name: "Afghanistan", region: "South Asia", lat: 34.53, lng: 69.17, slug: "afghanistan" },
   { name: "Cambodia", region: "East Asia", lat: 11.56, lng: 104.93, slug: "cambodia" },
   { name: "Myanmar", region: "East Asia", lat: 19.76, lng: 96.08, slug: "myanmar" },
   { name: "Laos", region: "East Asia", lat: 17.97, lng: 102.6, slug: "laos" },
   { name: "Mongolia", region: "East Asia", lat: 47.92, lng: 106.92, slug: "mongolia" },
+  { name: "Singapore", region: "East Asia", lat: 1.35, lng: 103.82, slug: "singapore" },
 ];
 
 export const MARKET_REGIONS = {
-  Europe: { lat: 51.5, lng: -0.13, label: "Europe" },
-  "Middle East": { lat: 27.5, lng: 58.5, label: "Middle East" },
-  "South Asia": { lat: 23.8, lng: 82.5, label: "South Asia" },
-  "East Asia": { lat: 26.5, lng: 104.5, label: "East Asia" },
+  "Middle East": { lat: 26.2, lng: 52.5, label: "Middle East" },
+  "South Asia": { lat: 26.5, lng: 80.5, label: "South Asia" },
+  "East Asia": { lat: 20.5, lng: 105.5, label: "East Asia" },
 };
 
 export const VENDORS = [

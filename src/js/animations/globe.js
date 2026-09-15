@@ -209,26 +209,6 @@ function makePin(market) {
   return group;
 }
 
-function makeArc(a, b) {
-  const start = latLngToVector3(a.lat, a.lng, GLOBE_RADIUS + 0.02);
-  const end = latLngToVector3(b.lat, b.lng, GLOBE_RADIUS + 0.02);
-  const mid = start.clone().add(end).multiplyScalar(0.5);
-  const lift = 1.18 + start.distanceTo(end) * 0.12;
-  mid.normalize().multiplyScalar(GLOBE_RADIUS * lift);
-  const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
-  const geo = new THREE.BufferGeometry().setFromPoints(curve.getPoints(56));
-  const mat = new THREE.LineBasicMaterial({
-    color: 0x7fe3ff,
-    transparent: true,
-    opacity: 0,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-  });
-  const line = new THREE.Line(geo, mat);
-  line.userData.mat = mat;
-  return line;
-}
-
 export function createMarketGlobe(root) {
   if (!root) return null;
 
@@ -333,9 +313,6 @@ export function createMarketGlobe(root) {
     return pin;
   });
 
-  const arcGroup = new THREE.Group();
-  earth.add(arcGroup);
-
   const labels = MARKETS.map((market) => {
     const el = document.createElement("span");
     el.className = "market-globe__label";
@@ -344,11 +321,11 @@ export function createMarketGlobe(root) {
     return { market, el, stem: el.querySelector(".market-globe__stem") };
   });
 
-  const look = { lat: MARKET_REGIONS.Europe.lat, lng: MARKET_REGIONS.Europe.lng };
+  const look = { lat: MARKET_REGIONS["Middle East"].lat, lng: MARKET_REGIONS["Middle East"].lng };
   earth.quaternion.copy(lookQuat(look.lat, look.lng));
   pivot.rotation.set(0, 0, 0);
 
-  let activeRegion = "Europe";
+  let activeRegion = "Middle East";
   let dragging = false;
   let lastX = 0;
   let lastY = 0;
@@ -383,21 +360,6 @@ export function createMarketGlobe(root) {
       pin.userData.beam.material.opacity = on ? 0.7 : 0.12;
       pin.scale.setScalar(on ? 1.15 : 0.72);
     });
-
-    while (arcGroup.children.length) {
-      const line = arcGroup.children[0];
-      arcGroup.remove(line);
-      line.geometry.dispose();
-      line.material.dispose();
-    }
-    for (let i = 0; i < regionMarkets.length; i += 1) {
-      const next = regionMarkets[(i + 1) % regionMarkets.length];
-      if (regionMarkets.length === 1) break;
-      if (regionMarkets.length === 2 && i === 1) break;
-      const arc = makeArc(regionMarkets[i], next);
-      arcGroup.add(arc);
-      gsap.to(arc.userData.mat, { opacity: reduce ? 0.55 : 0.7, duration: reduce ? 0 : 0.7, delay: 0.12 * i });
-    }
 
     lookTween?.kill();
     look.lat = focus.lat;

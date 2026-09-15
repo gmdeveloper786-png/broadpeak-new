@@ -48,11 +48,11 @@ export function initAbout() {
     start: "top 82%",
     once: true,
     onEnter: () => {
-      const n13 = section.querySelector("[data-count='13']");
+      const n16 = section.querySelector("[data-count='16']");
       const n13p = section.querySelector("[data-count='13plus']");
       const n9 = section.querySelector("[data-count='9']");
       const n360 = section.querySelector("[data-count='360']");
-      if (n13) animateCount(n13, 13);
+      if (n16) animateCount(n16, 16);
       if (n13p) animateCount(n13p, 13, (v) => `${Math.round(v)}+`);
       if (n9) animateCount(n9, 9);
       if (n360) animateCount(n360, 360, (v) => `${Math.round(v)}°`);

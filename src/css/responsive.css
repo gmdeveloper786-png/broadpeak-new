@@ -175,12 +175,12 @@
   }
 
   .hero__phase h1 {
-    font-size: clamp(2.35rem, 11vw, 3.35rem);
+    font-size: clamp(1.9rem, 9vw, 2.65rem);
   }
 
   .hero__phase h2 {
     max-width: 22ch;
-    font-size: clamp(1.08rem, 4.8vw, 1.4rem);
+    font-size: clamp(0.95rem, 4.2vw, 1.2rem);
   }
 
   .hero__eyebrow {
@@ -311,17 +311,13 @@
 
   .solution__row {
     grid-template-columns: minmax(0, 1fr) auto;
-    min-height: 5.2rem;
-    padding-block: 1.15rem;
+    min-height: 4rem;
+    padding-block: 0.95rem;
     gap: 1rem;
   }
 
   .solution h3 {
-    font-size: 1.22rem;
-  }
-
-  .solution__lede {
-    font-size: 0.84rem;
+    font-size: 1.02rem;
   }
 
   .solution__icon {
@@ -357,7 +353,7 @@
   }
 
   .footer__word {
-    font-size: clamp(2rem, 11vw, 4.5rem);
+    font-size: clamp(1.6rem, 9vw, 3.4rem);
     line-height: 0.82;
     overflow: hidden;
   }
@@ -383,7 +379,7 @@
 
 @media (max-width: 430px) {
   .about-stat__value {
-    font-size: clamp(2.2rem, 12vw, 3.2rem);
+    font-size: clamp(1.85rem, 9vw, 2.5rem);
   }
 
   .about__stats {
