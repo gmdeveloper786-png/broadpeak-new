@@ -174,12 +174,12 @@
     padding-inline: 0.2rem;
   }
 
-  .hero__phase h1 {
+  .hero__brand {
     font-size: clamp(1.9rem, 9vw, 2.65rem);
   }
 
   .hero__phase h2 {
-    max-width: 22ch;
+    max-width: min(28rem, 94%);
     font-size: clamp(0.95rem, 4.2vw, 1.2rem);
   }
 
@@ -321,14 +321,10 @@
   }
 
   .solution__icon {
-    width: 2.85rem;
-    height: 2.85rem;
-    border-radius: 0.8rem;
-  }
-
-  .solution__icon svg {
-    width: 1.45rem;
-    height: 1.45rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    padding: 0.28rem;
+    border-radius: 0.85rem;
   }
 
   .difference__pin {
@@ -353,9 +349,10 @@
   }
 
   .footer__word {
-    font-size: clamp(1.6rem, 9vw, 3.4rem);
-    line-height: 0.82;
+    font-size: clamp(1.15rem, 7vw, 2.2rem);
+    line-height: 1;
     overflow: hidden;
+    padding-bottom: 0.28em;
   }
 
   .footer__meta {
