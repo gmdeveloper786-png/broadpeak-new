@@ -20,7 +20,7 @@
 }
 
 .btn--solid {
-  background: #00aeefba;;
+  /* background: #00aeefba;; */
   border-color: var(--brand-primary);
   color: #ffffff;
 }
