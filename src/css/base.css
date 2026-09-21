@@ -65,12 +65,12 @@ body.is-nav-open {
   text-transform: uppercase;
 }
 
-.kicker::before {
+/* .kicker::before {
   content: "";
   width: 1.6rem;
   height: 1px;
   background: var(--brand-accent);
-}
+} */
 
 .display {
   font-family: var(--font-display);

@@ -20,13 +20,13 @@
 }
 
 .btn--solid {
-  background: var(--brand-primary);
+  background: #00aeefba;;
   border-color: var(--brand-primary);
   color: #ffffff;
 }
 
 .btn--solid:hover {
-  background: #3bc4f5;
+  background: #029bd299;
 }
 
 .btn--ghost {

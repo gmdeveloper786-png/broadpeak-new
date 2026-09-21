@@ -1144,16 +1144,49 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   flex: 0 0 min(42vw, 34rem);
   width: min(42vw, 34rem);
   min-height: 0;
-  padding: 1.4rem 4.2vw 1.4rem 1.4rem;
-  border-right: 1px solid var(--line);
+  padding: 1.6rem 4.2vw 1.8rem 1.4rem;
+  border-right: 1px solid rgba(244, 247, 250, 0.12);
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #071018;
+}
+
+.diff-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--diff-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.04);
+  transition: transform 0.7s var(--ease-out);
+}
+
+.diff-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(5, 13, 20, 0.25) 0%, rgba(5, 13, 20, 0.45) 42%, rgba(5, 13, 20, 0.88) 100%),
+    linear-gradient(90deg, rgba(5, 13, 20, 0.35), transparent 55%);
+  pointer-events: none;
 }
 
 .diff-panel:last-child {
   border-right: 0;
+}
+
+.diff-panel h3,
+.diff-panel p {
+  position: relative;
+  z-index: 2;
 }
 
 .diff-panel h3 {
@@ -1163,13 +1196,22 @@
   letter-spacing: -0.03em;
   line-height: 1.05;
   margin: 0 0 0.75rem;
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(5, 11, 18, 0.55);
 }
 
 .diff-panel p {
   max-width: 28rem;
-  color: var(--text-secondary);
+  color: rgba(220, 230, 238, 0.88);
   font-size: clamp(0.88rem, 1.15vw, 1rem);
   line-height: 1.55;
+  text-shadow: 0 2px 14px rgba(5, 11, 18, 0.45);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .diff-panel:hover::before {
+    transform: scale(1.1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1305,6 +1347,7 @@
   height: 5.4rem;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  display: none;
 }
 
 .value-core__grid {
