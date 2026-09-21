@@ -268,7 +268,7 @@ body.is-nav-open .nav-toggle span::after {
   width: 11.5rem;
   height: 5.4rem;
   padding: 0.85rem 1.1rem;
-  background: #f6f8fa;
+  background: #ffffff;
   border-radius: 0.35rem;
   flex: 0 0 auto;
 }
