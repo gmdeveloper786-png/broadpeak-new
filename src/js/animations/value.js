@@ -108,9 +108,9 @@ export function initValueProposition() {
       scrollTrigger: {
         trigger: section,
         start: "top top",
-        end: "+=320%",
+        end: "+=175%",
         pin,
-        scrub: 1.2,
+        scrub: 1,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onRefresh: layoutSpokes,
