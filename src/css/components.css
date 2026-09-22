@@ -280,6 +280,17 @@ body.is-nav-open .nav-toggle span::after {
   object-fit: contain;
 }
 
+.vendor-tile--wanclouds {
+  padding: 0.55rem 0.7rem;
+}
+
+.vendor-tile--wanclouds img {
+  max-height: 3.55rem;
+  max-width: 100%;
+  width: 100%;
+  transform: scale(1.15);
+}
+
 .topo {
   position: absolute;
   inset: auto 0 0;
