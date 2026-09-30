@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /play-to-win
+Disallow: /play-to-win.html
+Disallow: /play-to-win/
+
+Sitemap: https://www.broadpeak-intl.com/sitemap.xml

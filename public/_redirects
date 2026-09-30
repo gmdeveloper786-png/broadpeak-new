@@ -1,0 +1,30 @@
+# Apex → www (preferred canonical host)
+https://broadpeak-intl.com/*  https://www.broadpeak-intl.com/:splat  301!
+http://broadpeak-intl.com/*   https://www.broadpeak-intl.com/:splat  301!
+http://www.broadpeak-intl.com/* https://www.broadpeak-intl.com/:splat 301!
+
+# Legacy multi-page URLs → one-pager sections
+/about-us                     /#about          301
+/about-us/                    /#about          301
+/about                        /#about          301
+/about/                       /#about          301
+/contact-us                   /#contact        301
+/contact-us/                  /#contact        301
+/contact                      /#contact        301
+/contact/                     /#contact        301
+/markets                      /#markets        301
+/markets/                     /#markets        301
+/solutions                    /#solutions      301
+/solutions/                   /#solutions      301
+/partners                     /#network        301
+/partners/                    /#network        301
+/consultancy                  /#consultancy    301
+/consultancy/                 /#consultancy    301
+
+# Clean URLs for docs / tools (unchanged)
+/company-profile              /company-profile.pdf            200
+/company-profile/             /company-profile.pdf            200
+/company-brief-overview       /company-brief-overview.pdf     200
+/company-brief-overview/      /company-brief-overview.pdf     200
+/play-to-win                  /play-to-win.html               200
+/play-to-win/                 /play-to-win.html               200

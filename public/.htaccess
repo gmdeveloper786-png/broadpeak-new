@@ -1,0 +1,27 @@
+# LiteSpeed / Apache — host + legacy SEO redirects + clean URLs
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Apex → www (matches canonical)
+  RewriteCond %{HTTP_HOST} ^broadpeak-intl\.com$ [NC]
+  RewriteRule ^ https://www.broadpeak-intl.com%{REQUEST_URI} [L,R=301]
+
+  # Legacy multi-page URLs → one-pager sections
+  RewriteRule ^about-us/?$ /#about [R=301,L,NE]
+  RewriteRule ^about/?$ /#about [R=301,L,NE]
+  RewriteRule ^contact-us/?$ /#contact [R=301,L,NE]
+  RewriteRule ^contact/?$ /#contact [R=301,L,NE]
+  RewriteRule ^markets/?$ /#markets [R=301,L,NE]
+  RewriteRule ^solutions/?$ /#solutions [R=301,L,NE]
+  RewriteRule ^partners/?$ /#network [R=301,L,NE]
+  RewriteRule ^consultancy/?$ /#consultancy [R=301,L,NE]
+
+  # Clean URLs for docs / tools
+  RewriteRule ^company-profile/?$ /company-profile.pdf [L]
+  RewriteRule ^company-brief-overview/?$ /company-brief-overview.pdf [L]
+  RewriteRule ^play-to-win/?$ /play-to-win.html [L]
+</IfModule>

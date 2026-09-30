@@ -1,0 +1,34 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "broadpeak-intl.com" }],
+      "destination": "https://www.broadpeak-intl.com/:path*",
+      "permanent": true
+    },
+    { "source": "/about-us", "destination": "/#about", "permanent": true },
+    { "source": "/about-us/", "destination": "/#about", "permanent": true },
+    { "source": "/about", "destination": "/#about", "permanent": true },
+    { "source": "/about/", "destination": "/#about", "permanent": true },
+    { "source": "/contact-us", "destination": "/#contact", "permanent": true },
+    { "source": "/contact-us/", "destination": "/#contact", "permanent": true },
+    { "source": "/contact", "destination": "/#contact", "permanent": true },
+    { "source": "/contact/", "destination": "/#contact", "permanent": true },
+    { "source": "/markets", "destination": "/#markets", "permanent": true },
+    { "source": "/markets/", "destination": "/#markets", "permanent": true },
+    { "source": "/solutions", "destination": "/#solutions", "permanent": true },
+    { "source": "/solutions/", "destination": "/#solutions", "permanent": true },
+    { "source": "/partners", "destination": "/#network", "permanent": true },
+    { "source": "/partners/", "destination": "/#network", "permanent": true },
+    { "source": "/consultancy", "destination": "/#consultancy", "permanent": true },
+    { "source": "/consultancy/", "destination": "/#consultancy", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/company-profile", "destination": "/company-profile.pdf" },
+    { "source": "/company-profile/", "destination": "/company-profile.pdf" },
+    { "source": "/company-brief-overview", "destination": "/company-brief-overview.pdf" },
+    { "source": "/company-brief-overview/", "destination": "/company-brief-overview.pdf" },
+    { "source": "/play-to-win", "destination": "/play-to-win.html" },
+    { "source": "/play-to-win/", "destination": "/play-to-win.html" }
+  ]
+}

@@ -178,7 +178,7 @@
     font-size: clamp(1.9rem, 9vw, 2.65rem);
   }
 
-  .hero__phase h2 {
+  .hero__tagline {
     max-width: min(28rem, 94%);
     font-size: clamp(0.95rem, 4.2vw, 1.2rem);
   }
@@ -318,6 +318,11 @@
 
   .solution h3 {
     font-size: 1.02rem;
+  }
+
+  .solution__copy p {
+    font-size: 0.8rem;
+    line-height: 1.4;
   }
 
   .solution__icon {

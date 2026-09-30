@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VCF Architecture Builder — Broadpeak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#081422;
+    --navy-900:#0B1E33;
+    --navy-700:#123350;
+    --navy-600:#1B4266;
+    --cyan-400:#23C4D6;
+    --cyan-300:#5FDCE8;
+    --amber-400:#F2A93B;
+    --amber-300:#F7C57A;
+    --violet-400:#9B8CFF;
+    --violet-300:#C2B8FF;
+    --mint-400:#4FD9A0;
+    --mint-300:#8FEAC4;
+    --ice-50:#F3F7FA;
+    --danger:#E85D5D;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:radial-gradient(120% 90% at 50% 0%, var(--navy-700) 0%, var(--navy-900) 55%, var(--navy-950) 100%);
+    font-family:'Inter',sans-serif;
+    color:var(--ice-50);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow-x:hidden;
+    padding: env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);
+  }
+  #app{
+    width:100%;
+    max-width:480px;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    padding:0 20px;
+  }
+
+  .peaks{
+    position:absolute; left:0; right:0; top:0; height:180px;
+    pointer-events:none; opacity:0.55; z-index:0;
+  }
+  .peaks svg{width:100%;height:100%;display:block;}
+
+  .screen{ position:relative; z-index:1; display:none; flex-direction:column; flex:1; padding-top:56px; }
+  .screen.active{ display:flex; }
+
+  .eyebrow{ font-size:13px; letter-spacing:0.02em; color:var(--cyan-300); font-weight:600; margin:0 0 6px; }
+  h1{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:36px; line-height:1.08; margin:0 0 14px; color:var(--ice-50); }
+  .lede{ font-size:15.5px; line-height:1.55; color:#B9C9DA; max-width:40ch; margin:0 0 22px; }
+
+  .btn{
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:17px;
+    border:none; border-radius:14px; padding:16px 22px;
+    background:linear-gradient(135deg, var(--cyan-400), var(--cyan-300));
+    color:var(--navy-950); cursor:pointer; width:100%;
+    transition:transform .12s ease, box-shadow .12s ease;
+    box-shadow:0 10px 24px -10px rgba(35,196,214,0.55);
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn.secondary{ background:transparent; color:var(--cyan-300); border:1.5px solid var(--navy-600); box-shadow:none; }
+  .btn-row{ display:flex; flex-direction:column; gap:12px; }
+
+  .field-label{ font-size:13px; color:#93A6BA; margin:0 0 8px; font-weight:500; }
+  .name-input{
+    width:100%; font-family:'Inter',sans-serif; font-size:16px; padding:14px 16px;
+    border-radius:12px; border:1.5px solid var(--navy-600); background:rgba(255,255,255,0.03);
+    color:var(--ice-50); margin-bottom:16px; outline:none;
+  }
+  .name-input::placeholder{ color:#5E7288; }
+  .name-input:focus{ border-color:var(--cyan-400); }
+
+  .legend{ display:grid; grid-template-columns:1fr 1fr; gap:10px 18px; margin-top:auto; margin-bottom:34px; font-size:12.5px; color:#93A6BA; }
+  .legend-item{ display:flex; align-items:center; gap:8px; }
+  .swatch{ width:13px; height:13px; border-radius:5px; flex-shrink:0; }
+  .swatch.mgmt{ background:var(--cyan-400); }
+  .swatch.compute{ background:var(--amber-400); }
+  .swatch.storage{ background:var(--violet-400); }
+  .swatch.network{ background:var(--mint-400); }
+
+  /* ---- game screen ---- */
+  .hud{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  .hud-label{ font-size:12px; color:#93A6BA; margin:0 0 2px; }
+  .hud-value{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:22px; color:var(--ice-50); }
+  .hud-value.time{ color:var(--cyan-300); }
+
+  .timebar-track{ height:6px; border-radius:6px; background:var(--navy-700); overflow:hidden; margin-bottom:16px; }
+  .timebar-fill{ height:100%; width:100%; background:linear-gradient(90deg, var(--cyan-400), var(--amber-400)); transform-origin:left; transition:width .1s linear; }
+
+  .track{
+    position:relative;
+    height:150px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.06);
+    overflow:hidden;
+    margin-bottom:14px;
+  }
+  .track::before{
+    content:'';
+    position:absolute; left:0; right:0; bottom:0; height:2px;
+    background:linear-gradient(90deg, transparent, var(--navy-600), transparent);
+  }
+  .chip{
+    position:absolute;
+    top:-14%;
+    background:var(--ice-50);
+    color:var(--navy-950);
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:12.5px;
+    padding:9px 13px;
+    border-radius:10px;
+    white-space:nowrap;
+    box-shadow:0 8px 18px -8px rgba(0,0,0,0.5);
+  }
+
+  .lanes{ display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; margin-bottom:20px; }
+  .lane{
+    border:none; border-radius:12px; padding:8px 4px;
+    min-height:50px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:11px; line-height:1.2;
+    cursor:pointer; color:var(--navy-950);
+    transition:transform .1s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .lane:active{ transform:scale(0.95); }
+  .lane.mgmt{ background:linear-gradient(135deg, var(--cyan-400), var(--cyan-300)); }
+  .lane.compute{ background:linear-gradient(135deg, var(--amber-400), var(--amber-300)); }
+  .lane.storage{ background:linear-gradient(135deg, var(--violet-400), var(--violet-300)); }
+  .lane.network{ background:linear-gradient(135deg, var(--mint-400), var(--mint-300)); }
+  .lane.flash-good{ animation:laneGood .3s ease; }
+  .lane.flash-bad{ animation:laneBad .3s ease; }
+  @keyframes laneGood{ 0%{ box-shadow:0 0 0 0 rgba(255,255,255,0.6);} 100%{ box-shadow:0 0 0 10px rgba(255,255,255,0);} }
+  @keyframes laneBad{ 0%,100%{ transform:translateX(0);} 25%{ transform:translateX(-4px);} 50%{ transform:translateX(4px);} 75%{ transform:translateX(-3px);} }
+
+  .stack-panel{ margin-top:auto; }
+  .stack-row{ display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .stack-tag{ width:82px; flex-shrink:0; font-size:11px; color:#93A6BA; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .stack-track{ flex:1; height:8px; border-radius:6px; background:var(--navy-700); overflow:hidden; }
+  .stack-fill{ height:100%; width:0%; border-radius:6px; transition:width .25s ease; }
+  .stack-fill.mgmt{ background:var(--cyan-400); }
+  .stack-fill.compute{ background:var(--amber-400); }
+  .stack-fill.storage{ background:var(--violet-400); }
+  .stack-fill.network{ background:var(--mint-400); }
+  .stack-count{ width:18px; text-align:right; font-size:11px; color:#93A6BA; font-family:'Space Grotesk',sans-serif; font-weight:700; }
+
+  .flash{ position:fixed; inset:0; background:var(--danger); opacity:0; pointer-events:none; z-index:5; transition:opacity .15s ease; }
+  .flash.show{ opacity:0.14; }
+
+  .floater{
+    position:absolute; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;
+    pointer-events:none; animation:float .6s ease forwards; z-index:6; left:50%; top:50%; transform:translateX(-50%);
+  }
+  @keyframes float{ from{ transform:translate(-50%,0); opacity:1; } to{ transform:translate(-50%,-26px); opacity:0; } }
+
+  /* ---- end screen ---- */
+  .score-card{ background:var(--navy-700); border:1px solid var(--navy-600); border-radius:18px; padding:26px 22px; text-align:center; margin-bottom:18px; }
+  .score-num{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:48px; color:var(--cyan-300); line-height:1; }
+  .score-tag{ font-size:14px; color:#93A6BA; margin-top:8px; }
+  .rank{ display:inline-block; margin-top:14px; padding:6px 14px; border-radius:999px; background:rgba(35,196,214,0.12); color:var(--cyan-300); font-size:13px; font-weight:600; }
+
+  .breakdown{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+  .breakdown-item{ background:var(--navy-700); border:1px solid var(--navy-600); border-radius:12px; padding:12px 14px; }
+  .breakdown-label{ font-size:11px; color:#93A6BA; font-weight:600; margin-bottom:4px; }
+  .breakdown-value{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:18px; }
+  .breakdown-value.mgmt{ color:var(--cyan-300); }
+  .breakdown-value.compute{ color:var(--amber-300); }
+  .breakdown-value.storage{ color:var(--violet-300); }
+  .breakdown-value.network{ color:var(--mint-300); }
+
+  .cta{ font-size:14px; line-height:1.6; color:#B9C9DA; margin-bottom:22px; }
+  .footer-mark{ margin-top:auto; padding:18px 0 26px; text-align:center; font-size:12px; letter-spacing:0.06em; color:#5E7288; }
+
+  /* ---- leaderboard ---- */
+  .board-list{ list-style:none; margin:0 0 24px; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .board-row{ display:flex; align-items:center; gap:12px; background:var(--navy-700); border:1px solid var(--navy-600); border-radius:12px; padding:12px 14px; }
+  .board-row.you{ border-color:var(--cyan-400); background:rgba(35,196,214,0.08); }
+  .board-rank{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; color:#93A6BA; width:22px; flex-shrink:0; }
+  .board-row:nth-child(1) .board-rank{ color:var(--cyan-300); }
+  .board-name{ flex:1; font-size:14px; font-weight:500; color:var(--ice-50); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .board-score{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; color:var(--cyan-300); flex-shrink:0; }
+  .board-empty{ font-size:14px; color:#5E7288; margin-bottom:24px; }
+</style>
+</head>
+<body>
+
+<div class="flash" id="flash"></div>
+
+<div id="app">
+
+  <div class="peaks">
+    <svg viewBox="0 0 480 180" preserveAspectRatio="none">
+      <polygon points="0,180 0,90 80,30 150,100 210,50 280,110 340,60 410,120 480,80 480,180" fill="#123350" opacity="0.7"/>
+      <polygon points="0,180 0,130 60,80 130,140 190,95 260,150 330,100 400,150 480,120 480,180" fill="#1B4266" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <!-- START SCREEN -->
+  <section class="screen active" id="screen-start">
+    <p class="eyebrow">Broadpeak · VMware Explore Singapore</p>
+    <h1>VCF Architecture Builder</h1>
+    <p class="lede">Components fall one at a time. Tap the right layer to place them correctly in your VCF stack before they hit the floor. Wrong layer costs you points.</p>
+
+    <p class="field-label">Your name (for the leaderboard)</p>
+    <input class="name-input" id="player-name" type="text" placeholder="e.g. Ali" maxlength="18" autocomplete="off">
+
+    <div class="btn-row">
+      <button class="btn" id="btn-start">Start 30-second run</button>
+      <button class="btn secondary" id="btn-view-board">View leaderboard</button>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="swatch mgmt"></span>Management</div>
+      <div class="legend-item"><span class="swatch compute"></span>Compute</div>
+      <div class="legend-item"><span class="swatch storage"></span>Storage</div>
+      <div class="legend-item"><span class="swatch network"></span>Network</div>
+    </div>
+  </section>
+
+  <!-- GAME SCREEN -->
+  <section class="screen" id="screen-game">
+    <div class="hud">
+      <div>
+        <p class="hud-label">Score</p>
+        <p class="hud-value" id="score">0</p>
+      </div>
+      <div style="text-align:right;">
+        <p class="hud-label">Time left</p>
+        <p class="hud-value time" id="time">30.0s</p>
+      </div>
+    </div>
+    <div class="timebar-track"><div class="timebar-fill" id="timebar"></div></div>
+
+    <div class="track" id="track">
+      <div class="chip" id="chip"></div>
+    </div>
+
+    <div class="lanes">
+      <button class="lane mgmt" data-layer="mgmt">Management</button>
+      <button class="lane compute" data-layer="compute">Compute</button>
+      <button class="lane storage" data-layer="storage">Storage</button>
+      <button class="lane network" data-layer="network">Network</button>
+    </div>
+
+    <div class="stack-panel">
+      <div class="stack-row">
+        <span class="stack-tag">Management</span>
+        <div class="stack-track"><div class="stack-fill mgmt" id="fill-mgmt"></div></div>
+        <span class="stack-count" id="count-mgmt">0</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-tag">Compute</span>
+        <div class="stack-track"><div class="stack-fill compute" id="fill-compute"></div></div>
+        <span class="stack-count" id="count-compute">0</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-tag">Storage</span>
+        <div class="stack-track"><div class="stack-fill storage" id="fill-storage"></div></div>
+        <span class="stack-count" id="count-storage">0</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-tag">Network</span>
+        <div class="stack-track"><div class="stack-fill network" id="fill-network"></div></div>
+        <span class="stack-count" id="count-network">0</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- END SCREEN -->
+  <section class="screen" id="screen-end">
+    <p class="eyebrow">Run complete</p>
+    <h1 style="font-size:30px;">Your VCF build</h1>
+
+    <div class="score-card">
+      <div class="score-num" id="final-score">0</div>
+      <div class="score-tag">architecture points in 30 seconds</div>
+      <div class="rank" id="rank">Trainee Architect</div>
+    </div>
+
+    <div class="breakdown">
+      <div class="breakdown-item"><div class="breakdown-label">Management</div><div class="breakdown-value mgmt" id="final-mgmt">0</div></div>
+      <div class="breakdown-item"><div class="breakdown-label">Compute</div><div class="breakdown-value compute" id="final-compute">0</div></div>
+      <div class="breakdown-item"><div class="breakdown-label">Storage</div><div class="breakdown-value storage" id="final-storage">0</div></div>
+      <div class="breakdown-item"><div class="breakdown-label">Network</div><div class="breakdown-value network" id="final-network">0</div></div>
+    </div>
+
+    <p class="cta">VMware Cloud Foundation unifies compute, storage, and networking under a single control plane — with built-in management, automation, and zero-trust security, extending to AI-ready infrastructure and disaster recovery as your private cloud grows.</p>
+
+    <div class="btn-row">
+      <button class="btn" id="btn-view-board-end">View leaderboard</button>
+      <button class="btn secondary" id="btn-again">Play again</button>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD SCREEN -->
+  <section class="screen" id="screen-board">
+    <p class="eyebrow">Broadpeak · VMware Explore Singapore</p>
+    <h1 style="font-size:30px;">Top Architects</h1>
+    <ol class="board-list" id="board-list"></ol>
+    <p class="board-empty" id="board-empty" style="display:none;">No runs yet — be the first on the board.</p>
+    <button class="btn" id="btn-board-again">Play again</button>
+  </section>
+
+  <div class="footer-mark">BROADPEAK INTERNATIONAL</div>
+</div>
+
+<script>
+(function(){
+  const ROUND_MS = 30000;
+  const LEADERBOARD_KEY = 'vcfArchitectureLeaderboard';
+  const NAME_KEY = 'broadpeakPlayerName';
+  const MAX_BOARD_ENTRIES = 10;
+  const CAP_PER_LAYER = 8; // visual fill cap for the stack bars
+
+  const COMPONENTS = [
+    { name: 'VCF Operations', layer: 'mgmt' },
+    { name: 'VCF Fleet Mgmt', layer: 'mgmt' },
+    { name: 'Mgmt vCenter', layer: 'mgmt' },
+    { name: 'ESXi Host', layer: 'compute' },
+    { name: 'DRS Cluster', layer: 'compute' },
+    { name: 'Workload vCenter', layer: 'compute' },
+    { name: 'vSAN Datastore', layer: 'storage' },
+    { name: 'vSAN ESA', layer: 'storage' },
+    { name: 'Storage Policy', layer: 'storage' },
+    { name: 'NSX Manager', layer: 'network' },
+    { name: 'NSX Edge', layer: 'network' },
+    { name: 'Tier-0 Gateway', layer: 'network' },
+  ];
+
+  const screens = {
+    start: document.getElementById('screen-start'),
+    game: document.getElementById('screen-game'),
+    end: document.getElementById('screen-end'),
+    board: document.getElementById('screen-board'),
+  };
+  const trackEl = document.getElementById('track');
+  const chipEl = document.getElementById('chip');
+  const scoreEl = document.getElementById('score');
+  const timeEl = document.getElementById('time');
+  const timebarEl = document.getElementById('timebar');
+  const finalScoreEl = document.getElementById('final-score');
+  const rankEl = document.getElementById('rank');
+  const flashEl = document.getElementById('flash');
+  const nameInput = document.getElementById('player-name');
+  const boardListEl = document.getElementById('board-list');
+  const boardEmptyEl = document.getElementById('board-empty');
+  const laneButtons = Array.from(document.querySelectorAll('.lane'));
+
+  let score = 0;
+  let startTime = 0;
+  let running = false;
+  let rafId = null;
+  let landTimeoutId = null;
+  let spawnTimeoutId = null;
+  let activeChip = null; // { layer, resolved }
+  let lastEntryId = null;
+  const layerCounts = { mgmt:0, compute:0, storage:0, network:0 };
+
+  function showScreen(name){
+    Object.values(screens).forEach(s => s.classList.remove('active'));
+    screens[name].classList.add('active');
+  }
+
+  try{
+    const savedName = localStorage.getItem(NAME_KEY);
+    if(savedName) nameInput.value = savedName;
+  }catch(e){}
+
+  function getLeaderboard(){
+    try{
+      const raw = localStorage.getItem(LEADERBOARD_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){ return []; }
+  }
+
+  function saveEntry(name, points){
+    const list = getLeaderboard();
+    const entry = { id: Date.now() + '-' + Math.random().toString(36).slice(2,7), name, score: points };
+    list.push(entry);
+    list.sort((a,b) => b.score - a.score);
+    const trimmed = list.slice(0, MAX_BOARD_ENTRIES);
+    try{ localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(trimmed)); }catch(e){}
+    return { entryId: entry.id };
+  }
+
+  function renderLeaderboard(){
+    const list = getLeaderboard();
+    boardListEl.innerHTML = '';
+    if(list.length === 0){
+      boardEmptyEl.style.display = 'block';
+      return;
+    }
+    boardEmptyEl.style.display = 'none';
+    list.forEach((entry, i) => {
+      const li = document.createElement('li');
+      li.className = 'board-row' + (entry.id === lastEntryId ? ' you' : '');
+      li.innerHTML = '<span class="board-rank">' + (i+1) + '</span><span class="board-name"></span><span class="board-score">' + entry.score + '</span>';
+      li.querySelector('.board-name').textContent = entry.name;
+      boardListEl.appendChild(li);
+    });
+  }
+
+  function currentPlayerName(){
+    const raw = nameInput.value.trim();
+    const name = raw.length ? raw.slice(0, 18) : 'Anonymous';
+    try{ localStorage.setItem(NAME_KEY, name); }catch(e){}
+    return name;
+  }
+
+  function difficultyProgress(){
+    const elapsed = Date.now() - startTime;
+    return Math.min(1, elapsed / ROUND_MS);
+  }
+
+  function updateStackUI(layer){
+    const pct = Math.min(100, (layerCounts[layer] / CAP_PER_LAYER) * 100);
+    document.getElementById('fill-' + layer).style.width = pct + '%';
+    document.getElementById('count-' + layer).textContent = layerCounts[layer];
+  }
+
+  function resetStackUI(){
+    ['mgmt','compute','storage','network'].forEach(layer => {
+      layerCounts[layer] = 0;
+      updateStackUI(layer);
+    });
+  }
+
+  function floatText(text, color){
+    const f = document.createElement('div');
+    f.className = 'floater';
+    f.textContent = text;
+    f.style.color = color;
+    trackEl.appendChild(f);
+    setTimeout(() => { if(trackEl.contains(f)) trackEl.removeChild(f); }, 650);
+  }
+
+  function flashLane(layer, good){
+    const btn = laneButtons.find(b => b.dataset.layer === layer);
+    if(!btn) return;
+    btn.classList.remove('flash-good','flash-bad');
+    void btn.offsetWidth;
+    btn.classList.add(good ? 'flash-good' : 'flash-bad');
+  }
+
+  function spawnChip(){
+    if(!running) return;
+    const item = COMPONENTS[Math.floor(Math.random() * COMPONENTS.length)];
+    activeChip = { layer: item.layer, resolved: false };
+
+    chipEl.textContent = item.name;
+    chipEl.style.opacity = '1';
+    chipEl.style.transition = 'none';
+    chipEl.style.top = '-14%';
+    void chipEl.offsetWidth;
+
+    const trackWidth = trackEl.clientWidth;
+    const chipWidth = chipEl.offsetWidth;
+    const margin = 10;
+    const maxLeft = Math.max(margin, trackWidth - chipWidth - margin);
+    const leftPx = margin + Math.random() * Math.max(0, maxLeft - margin);
+    chipEl.style.left = leftPx + 'px';
+
+    const progress = difficultyProgress();
+    const duration = 2700 - progress * 1300; // faster falls later in the round
+
+    requestAnimationFrame(() => {
+      chipEl.style.transition = 'top ' + duration + 'ms linear';
+      chipEl.style.top = '108%';
+    });
+
+    landTimeoutId = setTimeout(() => {
+      if(activeChip && !activeChip.resolved){
+        activeChip.resolved = true;
+        chipEl.style.opacity = '0';
+        spawnTimeoutId = setTimeout(spawnChip, 220);
+      }
+    }, duration + 30);
+  }
+
+  function attemptCatch(layer){
+    if(!running || !activeChip || activeChip.resolved) return;
+    activeChip.resolved = true;
+    clearTimeout(landTimeoutId);
+
+    if(layer === activeChip.layer){
+      score += 15;
+      layerCounts[layer]++;
+      updateStackUI(layer);
+      flashLane(layer, true);
+      floatText('+15', '#5FDCE8');
+    } else {
+      score = Math.max(0, score - 5);
+      flashLane(layer, false);
+      floatText('−5', '#E85D5D');
+      flashEl.classList.add('show');
+      setTimeout(() => flashEl.classList.remove('show'), 150);
+    }
+    scoreEl.textContent = score;
+    chipEl.style.transition = 'none';
+    chipEl.style.opacity = '0';
+    spawnTimeoutId = setTimeout(spawnChip, 220);
+  }
+
+  function tick(){
+    if(!running) return;
+    const elapsed = Date.now() - startTime;
+    const remaining = Math.max(0, ROUND_MS - elapsed);
+    timeEl.textContent = (remaining/1000).toFixed(1) + 's';
+    timebarEl.style.width = (100 * remaining/ROUND_MS) + '%';
+    if(remaining <= 0){
+      endGame();
+      return;
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function startGame(){
+    score = 0;
+    scoreEl.textContent = '0';
+    resetStackUI();
+    chipEl.style.opacity = '0';
+    activeChip = null;
+    showScreen('game');
+    running = true;
+    startTime = Date.now();
+    tick();
+    spawnChip();
+  }
+
+  function endGame(){
+    running = false;
+    clearTimeout(landTimeoutId);
+    clearTimeout(spawnTimeoutId);
+    cancelAnimationFrame(rafId);
+    if(activeChip) activeChip.resolved = true;
+    chipEl.style.opacity = '0';
+
+    finalScoreEl.textContent = score;
+    let rank = 'Trainee Architect';
+    if(score >= 320) rank = 'Chief Architect';
+    else if(score >= 180) rank = 'Principal Architect';
+    else if(score >= 90) rank = 'Solutions Architect';
+    rankEl.textContent = rank;
+
+    document.getElementById('final-mgmt').textContent = layerCounts.mgmt;
+    document.getElementById('final-compute').textContent = layerCounts.compute;
+    document.getElementById('final-storage').textContent = layerCounts.storage;
+    document.getElementById('final-network').textContent = layerCounts.network;
+
+    const name = currentPlayerName();
+    const result = saveEntry(name, score);
+    lastEntryId = result.entryId;
+
+    showScreen('end');
+  }
+
+  laneButtons.forEach(btn => {
+    btn.addEventListener('click', () => attemptCatch(btn.dataset.layer));
+  });
+
+  document.getElementById('btn-start').addEventListener('click', startGame);
+  document.getElementById('btn-again').addEventListener('click', startGame);
+  document.getElementById('btn-board-again').addEventListener('click', startGame);
+  document.getElementById('btn-view-board').addEventListener('click', () => {
+    lastEntryId = null;
+    renderLeaderboard();
+    showScreen('board');
+  });
+  document.getElementById('btn-view-board-end').addEventListener('click', () => {
+    renderLeaderboard();
+    showScreen('board');
+  });
+})();
+</script>
+
+</body>
+</html>

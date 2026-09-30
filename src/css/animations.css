@@ -39,7 +39,7 @@
   .hero__copy > .hero__eyebrow { animation-delay: 0.42s; }
   .hero__copy > h1 { animation-delay: 0.54s; }
   .hero__copy > .hero__rule { animation-delay: 0.66s; }
-  .hero__copy > h2 { animation-delay: 0.78s; }
+  .hero__copy > .hero__tagline { animation-delay: 0.78s; }
 }
 
 @keyframes hero-reveal {
