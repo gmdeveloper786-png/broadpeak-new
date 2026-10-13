@@ -28,3 +28,5 @@ http://www.broadpeak-intl.com/* https://www.broadpeak-intl.com/:splat 301!
 /company-brief-overview/      /company-brief-overview.pdf     200
 /play-to-win                  /play-to-win.html               200
 /play-to-win/                 /play-to-win.html               200
+/vmware                       /vmware.pdf                     200
+/vmware/                      /vmware.pdf                     200

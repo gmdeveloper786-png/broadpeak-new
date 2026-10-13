@@ -24,4 +24,5 @@
   RewriteRule ^company-profile/?$ /company-profile.pdf [L]
   RewriteRule ^company-brief-overview/?$ /company-brief-overview.pdf [L]
   RewriteRule ^play-to-win/?$ /play-to-win.html [L]
+  RewriteRule ^vmware/?$ /vmware.pdf [L]
 </IfModule>

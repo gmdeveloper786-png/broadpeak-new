@@ -8,6 +8,8 @@ function cleanUrlRoutes() {
     "/company-brief-overview/": "/company-brief-overview.pdf",
     "/play-to-win": "/play-to-win.html",
     "/play-to-win/": "/play-to-win.html",
+    "/vmware": "/vmware.pdf",
+    "/vmware/": "/vmware.pdf",
   };
 
   const rewrite = (req, _res, next) => {

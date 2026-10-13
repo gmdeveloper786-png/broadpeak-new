@@ -8,7 +8,8 @@ export const SITE_CONFIG = {
   canonical: "https://www.broadpeak-intl.com/",
   contact: {
     email: "info@broadpeak-intl.com",
-    address: "Unit No. 117-03, BCW, First Floor, Jafza View18, Jebel Ali Free Zone Dubai, United Arab Emirates",
+    address: "Jafza View18, Jebel Ali Free Zone Dubai, United Arab Emirates",  // United Arab Emirates
+    address2: "68 CIRCULAR ROAD, #02-01, SINGAPORE 049422",  // Singapore
   },
   summitAltitude: 8051,
   endAltitude: 0,

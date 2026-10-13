@@ -29,6 +29,8 @@
     { "source": "/company-brief-overview", "destination": "/company-brief-overview.pdf" },
     { "source": "/company-brief-overview/", "destination": "/company-brief-overview.pdf" },
     { "source": "/play-to-win", "destination": "/play-to-win.html" },
-    { "source": "/play-to-win/", "destination": "/play-to-win.html" }
+    { "source": "/play-to-win/", "destination": "/play-to-win.html" },
+    { "source": "/vmware", "destination": "/vmware.pdf" },
+    { "source": "/vmware/", "destination": "/vmware.pdf" }
   ]
 }
