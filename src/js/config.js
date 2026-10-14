@@ -52,7 +52,7 @@ export const MARKETS = [
   { name: "Nepal", region: "South Asia", lat: 27.72, lng: 85.32, slug: "nepal" },
   { name: "Bangladesh", region: "South Asia", lat: 23.81, lng: 90.41, slug: "bangladesh" },
   { name: "Bhutan", region: "South Asia", lat: 27.47, lng: 89.64, slug: "bhutan" },
-  { name: "Sri Lanka", region: "South Asia", lat: 6.93, lng: 79.85, slug: "sri-lanka" },
+  { name: "Srilanka", region: "South Asia", lat: 6.93, lng: 79.85, slug: "srilanka" },
   { name: "Afghanistan", region: "South Asia", lat: 34.53, lng: 69.17, slug: "afghanistan" },
   { name: "Cambodia", region: "East Asia", lat: 11.56, lng: 104.93, slug: "cambodia" },
   { name: "Myanmar", region: "East Asia", lat: 19.76, lng: 96.08, slug: "myanmar" },

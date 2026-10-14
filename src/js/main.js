@@ -17,7 +17,6 @@ import { initConsultancy } from "./animations/consultancy.js";
 import { initCTA } from "./animations/cta.js";
 import { initFooter } from "./animations/footer.js";
 import { initHeadingReveal } from "./animations/headings.js";
-import { initCursor } from "./animations/cursor.js";
 
 import "../css/reset.css";
 import "../css/variables.css";
@@ -62,7 +61,6 @@ async function boot() {
   initFooter();
   initHeadingReveal();
   initAltitudeMeter();
-  initCursor();
 
   await Promise.race([
     preloadCritical(),
