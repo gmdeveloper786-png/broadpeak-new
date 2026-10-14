@@ -185,7 +185,7 @@
 
 .hero__brand {
   margin: 0;
-  font-size: clamp(2.2rem, 5.5vw, 3.75rem);
+  font-size: clamp(2.45rem, 6vw, 4.15rem);
   font-weight: 800;
   line-height: 0.92;
   letter-spacing: -0.085em;
@@ -199,8 +199,8 @@
 
 .hero__tagline {
   margin: 0;
-  max-width: min(34rem, 92%);
-  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  max-width: min(38rem, 94%);
+  font-size: clamp(1.15rem, 2.25vw, 1.7rem);
   font-weight: 650;
   line-height: 1.34;
   letter-spacing: -0.028em;
